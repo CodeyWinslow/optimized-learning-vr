@@ -1,0 +1,21 @@
+1. Thesis
+2. Research
+3. Decide information gathering methods
+4. Reevaluate thesis
+5. Begin writing paper
+6. Setting up / developing experiment
+7. First experiment trials
+8. Refine experiment
+9. Deploy main experiments
+10. Analyze data
+11. Finished paper
+12. Write report
+
+Week 1
+	planning skills and evironment
+Week 2-5
+	developing environment
+Week 6-7
+	experiments
+Week 8-9
+	Finalizing paper and presentation
