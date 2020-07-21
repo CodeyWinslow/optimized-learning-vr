@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseControl : MonoBehaviour
+public enum BaseControlType
 {
-    // Start is called before the first frame update
-    void Start()
+    Light,
+    Meter,
+    Button,
+    Setting,
+    Slider,
+    Toggle
+}
+
+public abstract class BaseControl : MonoBehaviour
+{
+    public delegate void BaseControlEventHandler(BaseControl c);
+
+    protected BaseControlType _controlType;
+
+    public BaseControlType ControlType
     {
-        
+        get { return _controlType; }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract System.Object ControlValue();
 }

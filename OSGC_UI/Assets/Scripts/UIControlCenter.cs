@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIControlCenter : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class UIControlCenter : MonoBehaviour
     public ButtonControl button4;
     public ButtonControl button5;
     public ButtonControl button6;
+    public ButtonControl button7;
+    public ButtonControl button8;
+    public ButtonControl button9;
     public JoystickControl joystick;
     public ToggleControl toggle1;
     public ToggleControl toggle2;
@@ -31,15 +35,34 @@ public class UIControlCenter : MonoBehaviour
     public SliderControl slider2;
     public SliderControl slider3;
 
-    // Start is called before the first frame update
-    void Start()
+    //pausing
+    public Button BackButton;
+    public Button ExitButton;
+    public GameObject pauseScreen;
+
+    void Awake()
     {
-        
+        BackButton.onClick.AddListener(OnBackButton);
+        ExitButton.onClick.AddListener(OnExitButton);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseScreen.SetActive(true);
+        }
     }
+
+    void OnBackButton()
+    {
+        pauseScreen.SetActive(false);
+    }
+
+    void OnExitButton()
+    {
+        Application.Quit();
+    }
+
 }

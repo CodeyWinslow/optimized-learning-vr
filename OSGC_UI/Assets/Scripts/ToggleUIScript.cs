@@ -21,12 +21,12 @@ public class ToggleUIScript : MonoBehaviour
 
     void Start()
     {
-        CheckToggle(tControl, tControl.isOn);
+        CheckToggle(tControl);
     }
 
-    public void CheckToggle(BaseControl t, System.Object v)
+    public void CheckToggle(BaseControl t)
     {
-        if ((bool)v)
+        if ((bool)(t.ControlValue()))
         {
             ToggleOffImage.enabled = false;
             ToggleOnImage.enabled =true;

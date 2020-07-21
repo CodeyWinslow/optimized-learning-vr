@@ -19,11 +19,11 @@ public class SliderValueUI : MonoBehaviour
 
     void Start()
     {
-        OnSliderValueChanged(slider, slider.Value);
+        OnSliderValueChanged(slider);
     }
 
-    public void OnSliderValueChanged(BaseControl s, System.Object val)
+    public void OnSliderValueChanged(BaseControl s)
     {
-        textComp.text = string.Format("{0:F2}", (float)val);
+        textComp.text = string.Format("{0:F2}", (float)(s.ControlValue()));
     }
 }

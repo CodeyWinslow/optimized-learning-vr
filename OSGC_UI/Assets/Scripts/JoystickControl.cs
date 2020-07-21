@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class JoystickControl : BaseControl
+public class JoystickControl : MonoBehaviour
 {
     public delegate void DirectionChangedDelegate(JoystickControl j, Vector2 direction, float magnitude);
     public event DirectionChangedDelegate DirectionChangedEvent;

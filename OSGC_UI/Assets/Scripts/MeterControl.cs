@@ -20,6 +20,11 @@ public class MeterControl : BaseControl
         }
     }
 
+    void Awake()
+    {
+        _controlType = BaseControlType.Meter;
+    }
+
     void UpdateText()
     {
         int numToText = 0;
@@ -32,5 +37,10 @@ public class MeterControl : BaseControl
 
         numToText = (_value % 10);
         Ones.text = numToText.ToString();
+    }
+
+    public override object ControlValue()
+    {
+        return null;
     }
 }

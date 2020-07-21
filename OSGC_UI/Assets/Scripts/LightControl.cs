@@ -24,6 +24,11 @@ public class LightControl : BaseControl
         }
     }
 
+    void Awake()
+    {
+        _controlType = BaseControlType.Light;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +43,10 @@ public class LightControl : BaseControl
             imageBehaviour.sprite = LightOnImage;
         else
             imageBehaviour.sprite = LightOffImage;
+    }
+
+    public override object ControlValue()
+    {
+        return null;
     }
 }

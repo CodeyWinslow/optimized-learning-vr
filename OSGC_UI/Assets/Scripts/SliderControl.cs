@@ -6,13 +6,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class SliderControl : BaseControl
 {
-    public delegate void SliderChangedDelegate(BaseControl slider, System.Object value);
-    public event SliderChangedDelegate SliderChangedEvent;
+    public event BaseControlEventHandler SliderChangedEvent;
 
     private Slider sliderComp;
 
     void Awake()
     {
+        _controlType = BaseControlType.Slider;
         sliderComp = GetComponent<Slider>();
         sliderComp.onValueChanged.AddListener(OnValueChanged);
     }
@@ -25,6 +25,11 @@ public class SliderControl : BaseControl
     public void OnValueChanged(float val)
     {
         if (SliderChangedEvent != null)
-            SliderChangedEvent(this, val);
+            SliderChangedEvent(this);
+    }
+
+    public override object ControlValue()
+    {
+        return Value;
     }
 }

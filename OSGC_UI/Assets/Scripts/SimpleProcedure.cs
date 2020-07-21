@@ -1,35 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using UnityEngine;
 
 public class SimpleProcedure : ProcedureBase
 {
-    const int stepsInProcedure = 5;
-    int stepsPerformed = 0;
-    bool wrongStep = false;
+    delegate void Step(BaseControl cont);
+    List<Step> steps;
+    List<Step>.Enumerator currentStep;
 
-    BaseControl[] steps;
-    System.Object[] values;
+    bool stepsFinished = false;
+    bool wrongStep = false;
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
-        steps = new BaseControl[stepsInProcedure]
-        {
-            controller.Controls.button4,
-            controller.Controls.setting1,
-            controller.Controls.setting2,
-            controller.Controls.toggle2,
-            controller.Controls.toggle4
-        };
-        values = new System.Object[stepsInProcedure]
-        {
-            null,
-            1,
-            2,
-            false,
-            false
-        };
+        steps = new List<Step>();
+        steps.Add(StepOne);
+        steps.Add(StepTwo);
+        currentStep = steps.GetEnumerator();
+        currentStep.MoveNext();
         SetUpEvents();
     }
 
@@ -45,6 +35,9 @@ public class SimpleProcedure : ProcedureBase
         controller.Controls.button4.ButtonClickedEvent += UIHandler;
         controller.Controls.button5.ButtonClickedEvent += UIHandler;
         controller.Controls.button6.ButtonClickedEvent += UIHandler;
+        controller.Controls.button7.ButtonClickedEvent += UIHandler;
+        controller.Controls.button8.ButtonClickedEvent += UIHandler;
+        controller.Controls.button9.ButtonClickedEvent += UIHandler;
         //toggles
         controller.Controls.toggle1.ToggleChangedEvent += UIHandler;
         controller.Controls.toggle2.ToggleChangedEvent += UIHandler;
@@ -68,6 +61,9 @@ public class SimpleProcedure : ProcedureBase
         controller.Controls.button4.ButtonClickedEvent -= UIHandler;
         controller.Controls.button5.ButtonClickedEvent -= UIHandler;
         controller.Controls.button6.ButtonClickedEvent -= UIHandler;
+        controller.Controls.button7.ButtonClickedEvent -= UIHandler;
+        controller.Controls.button8.ButtonClickedEvent -= UIHandler;
+        controller.Controls.button9.ButtonClickedEvent -= UIHandler;
         //toggles
         controller.Controls.toggle1.ToggleChangedEvent -= UIHandler;
         controller.Controls.toggle2.ToggleChangedEvent -= UIHandler;
@@ -88,39 +84,52 @@ public class SimpleProcedure : ProcedureBase
         }
         else
         {
-            if (stepsPerformed >= stepsInProcedure)
+            if (stepsFinished)
             {
                 UnsetEvents();
+                controller.Controls.greenLight.Lit = true;
                 EndProcedure(true);
             }
         }
     }
 
-    void CheckValidStep(BaseControl control)
+    void StepOne(BaseControl control)
     {
-        if (control == steps[stepsPerformed])
-            ++stepsPerformed;
-        else
+        if (control != controller.Controls.button4)
             wrongStep = true;
+        else
+            NextStep();
     }
 
-    void CheckValidStep(BaseControl control, System.Object val)
+    void StepTwo(BaseControl control)
     {
-        if (control == steps[stepsPerformed] && val.Equals(values[stepsPerformed]))
-            ++stepsPerformed;
-        else
+        float sliderValueMin = 0.6f;
+        float sliderValueMax = 0.7f;
+        if (control != controller.Controls.slider2 &&
+            control != controller.Controls.button9)
         {
             wrongStep = true;
+        }
+        else if (control == controller.Controls.button9)
+        {
+             if((controller.Controls.slider2.Value < sliderValueMin)
+                || (controller.Controls.slider2.Value > sliderValueMax))
+                wrongStep = true;
+            else
+                NextStep();
+        }
+    }
+
+    void NextStep()
+    {
+        if (!currentStep.MoveNext())
+        {
+            stepsFinished = true;
         }
     }
 
     public void UIHandler(BaseControl c)
     {
-        CheckValidStep(c);
-    }
-
-    public void UIHandler(BaseControl c, System.Object val)
-    {
-        CheckValidStep(c, val);
+        currentStep.Current(c);
     }
 }

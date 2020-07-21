@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class SettingControl : BaseControl
 {
-    //delegate and event for setting change
-    public delegate void HandleSettingChanged(BaseControl setting, System.Object option);
-    public event HandleSettingChanged SettingChangedEvent;
+    //event for setting change
+    public event BaseControlEventHandler SettingChangedEvent;
 
     //class variables
     public Toggle option1;
     public Toggle option2;
     public Toggle option3;
+
+    void Awake()
+    {
+        _controlType = BaseControlType.Setting;
+    }
 
     void Start()
     {
@@ -39,7 +43,12 @@ public class SettingControl : BaseControl
         //notify subscribers
         if (SettingChangedEvent != null && e == true)
         {
-            SettingChangedEvent(this, SelectedOption);
+            SettingChangedEvent(this);
         }
+    }
+
+    public override object ControlValue()
+    {
+        return SelectedOption;
     }
 }

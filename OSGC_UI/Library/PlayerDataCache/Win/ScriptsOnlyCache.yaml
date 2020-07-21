@@ -1,7 +1,18 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - ButtonControl
+    - DebuggingController
+    - JoystickControl
+    - LightControl
+    - MeterControl
+    - ProcedureController
+    - SettingControl
+    - SliderControl
+    - SliderValueUI
+    - ToggleControl
     - ToggleUIScript
+    - UIControlCenter
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -18,6 +29,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -28,7 +40,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.ToggleGroup
   sceneClasses:
-    Assets/Scenes/UITest.unity:
+    Assets/Scenes/TouchscreenUI.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -45,30 +57,52 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11154}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11178}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11458}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 11484}
     - Class: 114
-      Script: {instanceID: 12874}
+      Script: {instanceID: 11538}
     - Class: 114
-      Script: {instanceID: 13630}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 14240}
+      Script: {instanceID: 11610}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 11732}
     - Class: 114
-      Script: {instanceID: 14282}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 14308}
+      Script: {instanceID: 12040}
     - Class: 114
-      Script: {instanceID: 39802}
+      Script: {instanceID: 12046}
+    - Class: 114
+      Script: {instanceID: 12228}
+    - Class: 114
+      Script: {instanceID: 12490}
+    - Class: 114
+      Script: {instanceID: 12634}
+    - Class: 114
+      Script: {instanceID: 12964}
+    - Class: 114
+      Script: {instanceID: 13508}
+    - Class: 114
+      Script: {instanceID: 13742}
+    - Class: 114
+      Script: {instanceID: 13824}
+    - Class: 114
+      Script: {instanceID: 14306}
+    - Class: 114
+      Script: {instanceID: 14376}
+    - Class: 114
+      Script: {instanceID: 14386}
+    - Class: 114
+      Script: {instanceID: 14398}
+    - Class: 114
+      Script: {instanceID: 14446}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -86,6 +120,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 7072231382eb3c4871b3dd75ad0227e1
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Slider
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -112,6 +152,12 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
+      Hash: 13e0d4fd55a18ec8f9a2837382e17b75
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Rectangle
+  - hash:
+      serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -124,6 +170,12 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
+      Hash: f062aba38b244a97f12d881cd7f6b820
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: EdgeGradient
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -134,6 +186,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b298e2354cb7a962312ca9901608fa60
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ToggleUIScript
+  - hash:
+      serializedVersion: 2
+      Hash: 498226576ff054b9fd5498d1f1c3e9e7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Arc
   - hash:
       serializedVersion: 2
       Hash: aeb62f729c52c814dec86c47dcac1471
@@ -167,6 +231,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SliderControl
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
@@ -182,6 +252,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: ff48c5849b59620a2b7022154d9d7695
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DebuggingController
+  - hash:
+      serializedVersion: 2
+      Hash: f29f0d79dc808471c777a8489700a35d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Sector
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -200,6 +282,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 28e5255e2fb29fe8b6deb0984f5026eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MeterControl
   - hash:
       serializedVersion: 2
       Hash: 0dbc3be398b4869a5c8d0d8481ee402c
@@ -262,6 +350,24 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 129e0ec4161dabef29ae9ecdc885091c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIControlCenter
+  - hash:
+      serializedVersion: 2
+      Hash: 3a5a791fed98c630887d76dcb6401fa8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ToggleControl
+  - hash:
+      serializedVersion: 2
+      Hash: b5cd4b5b0476fa9fef9c7a3986e81827
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LightControl
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -316,6 +422,18 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: d204acd514bb2e3043cd40c938aea632
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SettingControl
+  - hash:
+      serializedVersion: 2
+      Hash: 7e96d4192b7b2bc4fd7539c421dc1512
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Line
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -326,6 +444,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: e78c5233015f896ae48fa589e179006c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SliderValueUI
+  - hash:
+      serializedVersion: 2
+      Hash: bffcadb9797d8be363f802c42841d9a7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: EmptyFillRect
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -347,9 +477,21 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DebuggingControllerEditor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 23c060e02646c7c59dcd63926451fc67
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Polygon
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -368,6 +510,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 3df2f8a28f9ac7951030d824cdcf7765
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: Ellipse
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -436,6 +584,18 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProcedureController
+  - hash:
+      serializedVersion: 2
+      Hash: 46f4febb7b7aa932dc8b9043d2ae538b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.UI.Shapes
+    className: PixelLine
+  - hash:
+      serializedVersion: 2
       Hash: 8001a5f7502aab37e42206da015e6914
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -458,6 +618,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 9e2cd58aab45dfebd3776418002bb274
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ThisOtherThing.Utils.Animation
+    className: ValueSetter2
+  - hash:
+      serializedVersion: 2
+      Hash: bf4698a3b70ae92d7166ab31c3de7991
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JoystickControl
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -538,6 +710,12 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
+      Hash: d9264f8edd90a94537de63795fc1aaec
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonControl
+  - hash:
+      serializedVersion: 2
       Hash: aa88ae22474df55295327e4ee99e5a24
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -550,82 +728,10 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 7072231382eb3c4871b3dd75ad0227e1
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Slider
-  - hash:
-      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
-  - hash:
-      serializedVersion: 2
-      Hash: c3d3430df9e3ea95e3e3d587961390fb
-    assemblyName: Unity.Timeline.dll
-    namespaceName: UnityEngine.Timeline
-    className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 13e0d4fd55a18ec8f9a2837382e17b75
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Rectangle
-  - hash:
-      serializedVersion: 2
-      Hash: f062aba38b244a97f12d881cd7f6b820
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: EdgeGradient
-  - hash:
-      serializedVersion: 2
-      Hash: 498226576ff054b9fd5498d1f1c3e9e7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Arc
-  - hash:
-      serializedVersion: 2
-      Hash: f29f0d79dc808471c777a8489700a35d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Sector
-  - hash:
-      serializedVersion: 2
-      Hash: 7e96d4192b7b2bc4fd7539c421dc1512
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Line
-  - hash:
-      serializedVersion: 2
-      Hash: bffcadb9797d8be363f802c42841d9a7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: EmptyFillRect
-  - hash:
-      serializedVersion: 2
-      Hash: 23c060e02646c7c59dcd63926451fc67
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Polygon
-  - hash:
-      serializedVersion: 2
-      Hash: 3df2f8a28f9ac7951030d824cdcf7765
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: Ellipse
-  - hash:
-      serializedVersion: 2
-      Hash: 46f4febb7b7aa932dc8b9043d2ae538b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.UI.Shapes
-    className: PixelLine
-  - hash:
-      serializedVersion: 2
-      Hash: 9e2cd58aab45dfebd3776418002bb274
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: ThisOtherThing.Utils.Animation
-    className: ValueSetter2
   - hash:
       serializedVersion: 2
       Hash: 9e2cd58aab45dfebd3776418002bb274
@@ -634,11 +740,11 @@ ScriptsOnlyBuild:
     className: ValueSetter
   - hash:
       serializedVersion: 2
-      Hash: 1987f863722f9fa3ecd264a6b28fa549
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ToggleUIScript
+      Hash: c3d3430df9e3ea95e3e3d587961390fb
+    assemblyName: Unity.Timeline.dll
+    namespaceName: UnityEngine.Timeline
+    className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/UITest.unity
+  - Assets/Scenes/TouchscreenUI.unity
   playerPath: F:/Docs/Documents/OSGC/Builds/UITest/OSGC_UI.exe
