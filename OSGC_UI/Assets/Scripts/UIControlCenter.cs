@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(NotificationController))]
 public class UIControlCenter : MonoBehaviour
 {
     //controls
@@ -40,10 +41,28 @@ public class UIControlCenter : MonoBehaviour
     public Button ExitButton;
     public GameObject pauseScreen;
 
+    //settings
+    public Toggle cursorVisibleToggle;
+    bool showCursor = true;
+
+    //notification
+    NotificationController notifications;
+    public NotificationController Notifications
+    {
+        get { return notifications; }
+    }
+
     void Awake()
     {
         BackButton.onClick.AddListener(OnBackButton);
         ExitButton.onClick.AddListener(OnExitButton);
+        cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
+        notifications = GetComponent<NotificationController>();
+    }
+
+    void Start()
+    {
+        cursorVisibleToggle.isOn = showCursor;
     }
 
     // Update is called once per frame
@@ -55,6 +74,67 @@ public class UIControlCenter : MonoBehaviour
         }
     }
 
+    //Used to subscripe to all UI control events
+    public void SubscribeToAllControls(BaseControl.BaseControlEventHandler handler)
+    {
+        //buttons
+        button1.ButtonClickedEvent += handler;
+        button2.ButtonClickedEvent += handler;
+        button3.ButtonClickedEvent += handler;
+        button4.ButtonClickedEvent += handler;
+        button5.ButtonClickedEvent += handler;
+        button6.ButtonClickedEvent += handler;
+        button7.ButtonClickedEvent += handler;
+        button8.ButtonClickedEvent += handler;
+        button9.ButtonClickedEvent += handler;
+
+        //toggles
+        toggle1.ToggleChangedEvent += handler;
+        toggle2.ToggleChangedEvent += handler;
+        toggle3.ToggleChangedEvent += handler;
+        toggle4.ToggleChangedEvent += handler;
+
+        //sliders
+        slider1.SliderChangedEvent += handler;
+        slider2.SliderChangedEvent += handler;
+        slider3.SliderChangedEvent += handler;
+
+        //settings
+        setting1.SettingChangedEvent += handler;
+        setting2.SettingChangedEvent += handler;
+    }
+
+    public void UnsubscribeToAllControls(BaseControl.BaseControlEventHandler handler)
+    {
+        //buttons
+        button1.ButtonClickedEvent -= handler;
+        button2.ButtonClickedEvent -= handler;
+        button3.ButtonClickedEvent -= handler;
+        button4.ButtonClickedEvent -= handler;
+        button5.ButtonClickedEvent -= handler;
+        button6.ButtonClickedEvent -= handler;
+        button7.ButtonClickedEvent -= handler;
+        button8.ButtonClickedEvent -= handler;
+        button9.ButtonClickedEvent -= handler;
+
+        //toggles
+        toggle1.ToggleChangedEvent -= handler;
+        toggle2.ToggleChangedEvent -= handler;
+        toggle3.ToggleChangedEvent -= handler;
+        toggle4.ToggleChangedEvent -= handler;
+
+        //sliders
+        slider1.SliderChangedEvent -= handler;
+        slider2.SliderChangedEvent -= handler;
+        slider3.SliderChangedEvent -= handler;
+
+        //settings
+        setting1.SettingChangedEvent -= handler;
+        setting2.SettingChangedEvent -= handler;
+    }
+
+    //pause screen logic
+
     void OnBackButton()
     {
         pauseScreen.SetActive(false);
@@ -63,6 +143,17 @@ public class UIControlCenter : MonoBehaviour
     void OnExitButton()
     {
         Application.Quit();
+    }
+
+    void OnShowCursorToggle(bool show)
+    {
+        showCursor = show;
+        SetCursorVisibility();
+    }
+
+    void SetCursorVisibility()
+    {
+        Cursor.visible = showCursor;
     }
 
 }

@@ -20,7 +20,9 @@ public class ProcedureController : MonoBehaviour
     void Start()
     {
         procedures = new List<ProcedureBase>();
-        procedures.Add(new SimpleProcedure());
+        //procedures.Add(new EnumeratorTest());
+        procedures.Add(new IntermediateProcedure());
+        //procedures.Add(new SimpleProcedure());
         StartNextProcedure();
     }
 
@@ -32,9 +34,9 @@ public class ProcedureController : MonoBehaviour
             if (currentProc.Finished)
             {
                 if (currentProc.Success)
-                    Debug.Log("Finished successfully!");
+                    Controls.Notifications.ShowNotification("Finished successfully!");
                 else
-                    Debug.Log("FAILED");
+                    Controls.Notifications.ShowNotification("FAILED");
 
                 StartNextProcedure();
             }
