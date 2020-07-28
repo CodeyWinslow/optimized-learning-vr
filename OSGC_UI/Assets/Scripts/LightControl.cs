@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class LightControl : BaseControl
 {
     public Sprite LightOffImage;
@@ -27,22 +28,27 @@ public class LightControl : BaseControl
     void Awake()
     {
         _controlType = BaseControlType.Light;
+        imageBehaviour = GetComponent<Image>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        imageBehaviour = GetComponent<Image>();
-
         UpdateImage();
     }
 
     void UpdateImage()
     {
         if (lit)
-            imageBehaviour.sprite = LightOnImage;
+        {
+            if (LightOnImage != null)
+                imageBehaviour.sprite = LightOnImage;
+        }
         else
-            imageBehaviour.sprite = LightOffImage;
+        {
+            if (LightOffImage != null)
+                imageBehaviour.sprite = LightOffImage;
+        }
     }
 
     public override object ControlValue()

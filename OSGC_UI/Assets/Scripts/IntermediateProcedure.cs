@@ -13,10 +13,10 @@ class TriggerResponse
     //the list of steps for this trigger response
     protected List<Step> responseSteps;
     //the current step method for processing input
-    public List<Step>.Enumerator currentStep;
+    public IEnumerator<Step> currentStep;
 
     //uiController for access to ui controls
-    UIControlCenter controller;
+    protected UIControlCenter controller;
 
     //flags
     public bool finished;
@@ -31,25 +31,9 @@ class TriggerResponse
         responseSteps = new List<Step>();
     }
 
-    public TriggerResponse(TriggerResponse copy)
-    {
-        this.controller = copy.controller;
-        this.finished = copy.finished;
-        this.successful = copy.successful;
-        this.constantTrigger = copy.constantTrigger;
-        this.trigger = copy.trigger;
-        this.responseSteps = copy.responseSteps;
-        this.currentStep = copy.currentStep;
-    }
-
     public void SetController(UIControlCenter cont)
     {
         controller = cont;
-    }
-
-    public virtual TriggerResponse Copy()
-    {
-        return new TriggerResponse(this);
     }
 
     //Begins the trigger-response by activating trigger and getting the first step
@@ -77,49 +61,116 @@ class IntermediateTask1 : TriggerResponse
     public IntermediateTask1() : base() {
         trigger = MainTrigger;
         responseSteps.Add(StepOne);
-    }
-    public IntermediateTask1(IntermediateTask1 copy) : base(copy)
-    { }
-
-    public override TriggerResponse Copy()
-    {
-        return new IntermediateTask1(this);
+        responseSteps.Add(StepTwo);
     }
 
     public void MainTrigger()
     {
-        Debug.Log("Activated trigger!");
+        controller.redLight.Lit = false;
+        controller.yellowLight.Lit = false;
+        controller.greenLight.Lit = true;
     }
 
     public void StepOne(BaseControl control)
     {
-        Debug.Log("Received input! Finishing!");
-        NextStep();
+        if (control == controller.button5)
+            NextStep();
+        else
+            finished = true;
+    }
+
+    public void StepTwo(BaseControl control)
+    {
+        if (control == controller.toggle1)
+            NextStep();
+        else
+            finished = true;
     }
 }
 
 class IntermediateTask2 : TriggerResponse
 {
+    public IntermediateTask2() : base()
+    {
+        trigger = MainTrigger;
+        responseSteps.Add(StepOne);
+        responseSteps.Add(StepTwo);
+    }
 
+    public void MainTrigger()
+    {
+        controller.redLight.Lit = true;
+        controller.yellowLight.Lit = false;
+        controller.greenLight.Lit = false;
+    }
+
+    public void StepOne(BaseControl control)
+    {
+        if (control == controller.setting1
+            && controller.setting1.SelectedOption == 2)
+        {
+            NextStep();
+        }
+        else
+            finished = true;
+    }
+
+    public void StepTwo(BaseControl control)
+    {
+        if (control == controller.toggle3)
+            NextStep();
+        else
+            finished = true;
+    }
 }
 
 class IntermediateTask3 : TriggerResponse
 {
+    public IntermediateTask3() : base()
+    {
+        trigger = MainTrigger;
+        responseSteps.Add(StepOne);
+        responseSteps.Add(StepTwo);
+        responseSteps.Add(StepThree);
+    }
 
+    public void MainTrigger()
+    {
+        controller.redLight.Lit = false;
+        controller.yellowLight.Lit = true;
+        controller.greenLight.Lit = false;
+    }
+
+    public void StepOne(BaseControl control)
+    {
+        if (control == controller.button7)
+            NextStep();
+        else
+            finished = true;
+    }
+
+    public void StepTwo(BaseControl control)
+    {
+        if (control == controller.button8)
+            NextStep();
+        else
+            finished = true;
+    }
+
+    public void StepThree(BaseControl control)
+    {
+        if (control == controller.button9)
+            NextStep();
+        else
+            finished = true;
+    }
 }
 
 public class IntermediateProcedure : ProcedureBase
 {
-    static TriggerResponse[] triggersResponses =
-    {
-        new IntermediateTask1()//,
-        //new IntermediateTask2(),
-        //new IntermediateTask3()
-    };
-
     TriggerResponse currentTask;
     
-    int triggersToSucceed = 1;
+    int triggersToSucceed = 5;
 
     public override void BeginProcedure(ProcedureController cont)
     {
@@ -130,7 +181,7 @@ public class IntermediateProcedure : ProcedureBase
 
     void BeginTask()
     {
-        currentTask = GetRandomTask().Copy();
+        currentTask = GetRandomTask();
         currentTask.SetController(controller.Controls);
         currentTask.Begin();
     }
@@ -163,7 +214,27 @@ public class IntermediateProcedure : ProcedureBase
 
     TriggerResponse GetRandomTask()
     {
-        return triggersResponses[Random.Range(0, triggersResponses.Length - 1)];
+        int random = Random.Range(0, 2);
+
+        TriggerResponse task;
+
+        switch (random)
+        {
+            case 0:
+                task = new IntermediateTask1();
+                break;
+            case 1:
+                task = new IntermediateTask2();
+                break;
+            case 2:
+                task = new IntermediateTask3();
+                break;
+            default:
+                task = new IntermediateTask1();
+                break;
+        }
+
+        return task;
     }
 
     public void HandleInput(BaseControl control)
