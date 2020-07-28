@@ -21,8 +21,9 @@ public class NotificationController : MonoBehaviour
         notificationArea.SetActive(true);
     }
 
-    void DismissNotificationPressed()
+    public void DismissNotificationPressed()
     {
         notificationArea.SetActive(false);
+        Debug.Log("Pressed dismiss");
     }
 }

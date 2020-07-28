@@ -7,6 +7,7 @@ public class ProcedureController : MonoBehaviour
 {
     UIControlCenter controls;
     List<ProcedureBase> procedures;
+    public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
     
     int procIndex = 0;
@@ -23,7 +24,7 @@ public class ProcedureController : MonoBehaviour
         procedures.Add(new SimpleProcedure());
         procedures.Add(new IntermediateProcedure());
         procedures.Add(new AdvancedProcedure());
-        StartNextProcedure();
+        startScreen.SetActive(true);
     }
 
     // Update is called once per frame
@@ -38,10 +39,10 @@ public class ProcedureController : MonoBehaviour
                 else
                     Controls.Notifications.ShowNotification("FAILED");
 
-                StartNextProcedure();
+                FinishedProcedure(currentProc.Success);
+                currentProc = null;
             }
-
-            if (currentProc != null)
+            else if (currentProc != null)
                 currentProc.RunUpdate();
         }
     }
@@ -58,5 +59,32 @@ public class ProcedureController : MonoBehaviour
             Debug.Log("All procedures finished!");
             currentProc = null;
         }
+    }
+
+    void FinishedProcedure(bool success)
+    {
+        if (procIndex == procedures.Count)
+        {
+            string message = "";
+
+            if (success)
+                message += "Success! ";
+            else
+                message += "Failed. ";
+
+            message += "Finished all procedures.";
+            controls.Notifications.ShowNotification(message);
+        }
+        else
+        {
+            startScreen.SetActive(true);
+        }
+    }
+
+    public void StartScreenPressed()
+    {
+        startScreen.SetActive(false);
+        controls.Notifications.DismissNotificationPressed();
+        StartNextProcedure();
     }
 }

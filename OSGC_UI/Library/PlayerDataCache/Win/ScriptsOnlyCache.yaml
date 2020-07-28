@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - JoystickControl
     - LightControl
     - MeterControl
+    - NotificationController
     - ProcedureController
     - SettingControl
     - SliderControl
@@ -58,51 +59,53 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11154}
+      Script: {instanceID: 11148}
     - Class: 114
-      Script: {instanceID: 11178}
+      Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 11452}
     - Class: 114
-      Script: {instanceID: 11484}
+      Script: {instanceID: 11478}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11532}
     - Class: 114
-      Script: {instanceID: 11552}
+      Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11610}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11732}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 12010}
+      Script: {instanceID: 11780}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 12008}
     - Class: 114
-      Script: {instanceID: 12046}
+      Script: {instanceID: 12038}
     - Class: 114
-      Script: {instanceID: 12228}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 12490}
+      Script: {instanceID: 12226}
     - Class: 114
-      Script: {instanceID: 12634}
+      Script: {instanceID: 12488}
+    - Class: 114
+      Script: {instanceID: 12632}
     - Class: 114
       Script: {instanceID: 12964}
     - Class: 114
       Script: {instanceID: 13508}
     - Class: 114
-      Script: {instanceID: 13742}
+      Script: {instanceID: 13746}
     - Class: 114
-      Script: {instanceID: 13824}
+      Script: {instanceID: 13828}
     - Class: 114
-      Script: {instanceID: 14306}
+      Script: {instanceID: 14310}
     - Class: 114
-      Script: {instanceID: 14376}
+      Script: {instanceID: 14380}
     - Class: 114
-      Script: {instanceID: 14386}
+      Script: {instanceID: 14390}
     - Class: 114
-      Script: {instanceID: 14398}
+      Script: {instanceID: 14402}
     - Class: 114
-      Script: {instanceID: 14446}
+      Script: {instanceID: 14452}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -242,7 +245,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 896f4ddc5cbd3f6fa8a70c332cddb47a
+      Hash: 1d845b2535654b2525956159b2714d86
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
     className: SpriteShapeController
@@ -270,6 +273,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 523ce309f50d9eee6a8fc0e2f86c9c97
+    assemblyName: Unity.2D.SpriteShape.Runtime.dll
+    namespaceName: 
+    className: SpriteShapeGeometryCache
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -300,6 +309,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: f4f2fb2e49833de269669021baaf6849
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NotificationController
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -350,7 +365,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 129e0ec4161dabef29ae9ecdc885091c
+      Hash: e0174464998e77bb90c7fe39c9ae2b83
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIControlCenter
@@ -584,7 +599,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 066caca0932bbd5f3a35d507bd71a3eb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ProcedureController
@@ -747,4 +762,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/TouchscreenUI.unity
-  playerPath: F:/Docs/Documents/OSGC/Builds/UITest/OSGC_UI.exe
+  playerPath: E:/Docs/Documents/OSGC/Builds/UITest/OSGC_UI.exe
