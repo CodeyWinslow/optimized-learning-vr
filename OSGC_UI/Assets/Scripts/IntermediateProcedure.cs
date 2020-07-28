@@ -214,7 +214,7 @@ public class IntermediateProcedure : ProcedureBase
 
     TriggerResponse GetRandomTask()
     {
-        int random = Random.Range(0, 2);
+        int random = Random.Range(0, 3);
 
         TriggerResponse task;
 

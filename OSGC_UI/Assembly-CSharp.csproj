@@ -63,11 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AdvancedProcedure.cs" />
     <Compile Include="Assets\Scripts\BaseControl.cs" />
     <Compile Include="Assets\Scripts\ButtonControl.cs" />
     <Compile Include="Assets\Scripts\DebuggingController.cs" />
     <Compile Include="Assets\Scripts\DebuggingControllerEditor.cs" />
-    <Compile Include="Assets\Scripts\EnumeratorTest.cs" />
     <Compile Include="Assets\Scripts\IntermediateProcedure.cs" />
     <Compile Include="Assets\Scripts\JoystickControl.cs" />
     <Compile Include="Assets\Scripts\LightControl.cs" />

@@ -20,6 +20,7 @@ public class SliderControl : BaseControl
     public float Value
     {
         get { return sliderComp.value; }
+        set { sliderComp.value = value; }
     }
 
     public void OnValueChanged(float val)

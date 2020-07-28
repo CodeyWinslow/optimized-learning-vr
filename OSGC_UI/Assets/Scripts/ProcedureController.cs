@@ -20,9 +20,9 @@ public class ProcedureController : MonoBehaviour
     void Start()
     {
         procedures = new List<ProcedureBase>();
-        //procedures.Add(new EnumeratorTest());
+        procedures.Add(new SimpleProcedure());
         procedures.Add(new IntermediateProcedure());
-        //procedures.Add(new SimpleProcedure());
+        procedures.Add(new AdvancedProcedure());
         StartNextProcedure();
     }
 

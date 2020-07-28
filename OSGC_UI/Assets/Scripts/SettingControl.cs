@@ -36,6 +36,21 @@ public class SettingControl : BaseControl
 
             return -1;
         }
+        set
+        {
+            switch (value)
+            {
+                case 0:
+                    option1.isOn = true;
+                    break;
+                case 1:
+                    option2.isOn = true;
+                    break;
+                case 2:
+                    option3.isOn = true;
+                    break;
+            }
+        }
     }
 
     public void OnChangedSetting(bool e)
