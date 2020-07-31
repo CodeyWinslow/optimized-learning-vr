@@ -284,6 +284,9 @@
     <Reference Include="Valve.Newtonsoft.Json">
       <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>

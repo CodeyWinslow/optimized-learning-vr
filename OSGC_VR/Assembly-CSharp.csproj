@@ -685,8 +685,39 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>E:/Docs/Documents/OSGC/optimized-learning-vr/OSGC_VR/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SteamVR_Actions.csproj">
+      <Project>{17586DF5-C013-65E4-AD1A-F68523CF5280}</Project>
+      <Name>SteamVR_Actions</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
       <Project>{88B6D9C8-5264-DA0F-2A6C-DD60BB9641C2}</Project>
       <Name>SteamVR_Input_Editor</Name>
@@ -702,10 +733,6 @@
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
       <Project>{524AE42C-8295-A345-78E2-6A0D80117EC4}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="SteamVR_Actions.csproj">
-      <Project>{17586DF5-C013-65E4-AD1A-F68523CF5280}</Project>
-      <Name>SteamVR_Actions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
