@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class AdvancedProcedure : ProcedureBase
 {
-    float procedureTimer = 45f;
+    const float timeToCompleteProcedure = 45f;
+    float procedureTimer;
     float taskTimer = 0;
     const float timeToChange = 15f;
 
@@ -20,6 +21,8 @@ public class AdvancedProcedure : ProcedureBase
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
+        procedureTimer = timeToCompleteProcedure;
+        meter1Val = meter2Val = meter3Val = 500f;
         meter1modifier = UnityEngine.Random.Range(-50, 51);
         meter2modifier = UnityEngine.Random.Range(-50, 51);
         meter3modifier = UnityEngine.Random.Range(-50, 51);

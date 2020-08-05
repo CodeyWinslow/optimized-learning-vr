@@ -52,12 +52,20 @@ public class UIControlCenter : MonoBehaviour
         get { return notifications; }
     }
 
+    //tutorials
+    public SimpleProcedureTutorialHelper simpleTutorialHelper;
+    public IntermediateProcedureTutorialHelper intermediateTutorialHelper;
+    public AdvancedProcedureTutorialHelper advancedTutorialHelper;
+
     void Awake()
     {
         BackButton.onClick.AddListener(OnBackButton);
         ExitButton.onClick.AddListener(OnExitButton);
         cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
         notifications = GetComponent<NotificationController>();
+        simpleTutorialHelper = GetComponent<SimpleProcedureTutorialHelper>();
+        intermediateTutorialHelper = GetComponent<IntermediateProcedureTutorialHelper>();
+        advancedTutorialHelper = GetComponent<AdvancedProcedureTutorialHelper>();
     }
 
     void Start()

@@ -1,14 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AdvancedProcedureTutorialHelper
     - ButtonControl
     - DebuggingController
+    - IntermediateProcedureTutorialHelper
     - JoystickControl
     - LightControl
     - MeterControl
     - NotificationController
     - ProcedureController
     - SettingControl
+    - SimpleProcedureTutorialHelper
     - SliderControl
     - SliderValueUI
     - ToggleControl
@@ -73,39 +76,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11728}
+      Script: {instanceID: 11730}
     - Class: 114
-      Script: {instanceID: 11780}
+      Script: {instanceID: 11782}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 12038}
+      Script: {instanceID: 12040}
     - Class: 114
-      Script: {instanceID: 12044}
+      Script: {instanceID: 12046}
     - Class: 114
-      Script: {instanceID: 12226}
+      Script: {instanceID: 12228}
     - Class: 114
-      Script: {instanceID: 12488}
+      Script: {instanceID: 12492}
     - Class: 114
-      Script: {instanceID: 12632}
+      Script: {instanceID: 12542}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 12638}
     - Class: 114
-      Script: {instanceID: 13508}
+      Script: {instanceID: 12826}
     - Class: 114
-      Script: {instanceID: 13746}
+      Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 13828}
+      Script: {instanceID: 13516}
     - Class: 114
-      Script: {instanceID: 14310}
+      Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 14380}
+      Script: {instanceID: 13836}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 14318}
     - Class: 114
-      Script: {instanceID: 14402}
+      Script: {instanceID: 14388}
     - Class: 114
-      Script: {instanceID: 14452}
+      Script: {instanceID: 14398}
+    - Class: 114
+      Script: {instanceID: 14410}
+    - Class: 114
+      Script: {instanceID: 14460}
+    - Class: 114
+      Script: {instanceID: 22608}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -365,7 +374,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: e0174464998e77bb90c7fe39c9ae2b83
+      Hash: d79746cbb99c0fb925fce7abbdff9887
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIControlCenter
@@ -449,6 +458,12 @@ ScriptsOnlyBuild:
     className: Line
   - hash:
       serializedVersion: 2
+      Hash: e37ea8034898174320f8e4c0d5c33b48
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleProcedureTutorialHelper
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -495,6 +510,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DebuggingControllerEditor
+  - hash:
+      serializedVersion: 2
+      Hash: a7ae98ba58835ecaa55f68ce006010d4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IntermediateProcedureTutorialHelper
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -759,6 +780,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 75c77bf23d6fd4054b1e2d72bc21fba0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AdvancedProcedureTutorialHelper
   platform: 5
   scenePathNames:
   - Assets/Scenes/TouchscreenUI.unity
