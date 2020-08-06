@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 [RequireComponent(typeof(UIControlCenter))]
@@ -7,6 +8,7 @@ public class ProcedureController : MonoBehaviour
 {
     UIControlCenter controls;
     List<ProcedureBase> procedures;
+    public List<GameObject> startMessages;
     public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
     
@@ -39,7 +41,10 @@ public class ProcedureController : MonoBehaviour
         newProc.RestartOnFailure = true;
         procedures.Add(newProc);
 
-        startScreen.SetActive(true);
+        if (procedures != null && procedures.Count > 0)
+            startScreen.SetActive(true);
+        if (startMessages.Count > 0 && startMessages[0] != null)
+            startMessages[0].SetActive(true);
     }
 
     // Update is called once per frame
@@ -104,6 +109,8 @@ public class ProcedureController : MonoBehaviour
         }
         else
         {
+            if (startMessages.Count > procIndex && startMessages[procIndex] != null)
+                startMessages[procIndex].SetActive(true);
             startScreen.SetActive(true);
         }
     }
@@ -111,6 +118,8 @@ public class ProcedureController : MonoBehaviour
     public void StartScreenPressed()
     {
         startScreen.SetActive(false);
+        if (startMessages.Count > procIndex && startMessages[procIndex] != null)
+            startMessages[procIndex].SetActive(false);
         controls.Notifications.DismissNotificationPressed();
         StartNextProcedure();
     }

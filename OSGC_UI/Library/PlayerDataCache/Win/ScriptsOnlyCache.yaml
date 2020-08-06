@@ -90,31 +90,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12492}
     - Class: 114
-      Script: {instanceID: 12542}
+      Script: {instanceID: 12508}
     - Class: 114
-      Script: {instanceID: 12638}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 12826}
+      Script: {instanceID: 12640}
     - Class: 114
-      Script: {instanceID: 12972}
+      Script: {instanceID: 12828}
     - Class: 114
-      Script: {instanceID: 13516}
+      Script: {instanceID: 12974}
     - Class: 114
-      Script: {instanceID: 13754}
+      Script: {instanceID: 13518}
     - Class: 114
-      Script: {instanceID: 13836}
+      Script: {instanceID: 13756}
     - Class: 114
-      Script: {instanceID: 14318}
+      Script: {instanceID: 13838}
     - Class: 114
-      Script: {instanceID: 14388}
+      Script: {instanceID: 14322}
     - Class: 114
-      Script: {instanceID: 14398}
+      Script: {instanceID: 14392}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 14402}
     - Class: 114
-      Script: {instanceID: 14460}
+      Script: {instanceID: 14414}
     - Class: 114
-      Script: {instanceID: 22608}
+      Script: {instanceID: 14464}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -452,6 +452,12 @@ ScriptsOnlyBuild:
     className: SettingControl
   - hash:
       serializedVersion: 2
+      Hash: 75c77bf23d6fd4054b1e2d72bc21fba0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AdvancedProcedureTutorialHelper
+  - hash:
+      serializedVersion: 2
       Hash: 7e96d4192b7b2bc4fd7539c421dc1512
     assemblyName: Assembly-CSharp.dll
     namespaceName: ThisOtherThing.UI.Shapes
@@ -780,12 +786,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 75c77bf23d6fd4054b1e2d72bc21fba0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AdvancedProcedureTutorialHelper
   platform: 5
   scenePathNames:
   - Assets/Scenes/TouchscreenUI.unity

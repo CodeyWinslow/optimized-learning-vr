@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IntermediateProcedureTutorial : ProcedureBase
 {
@@ -8,6 +9,7 @@ public class IntermediateProcedureTutorial : ProcedureBase
     List<TriggerResponse> tasks;
 
     //bool tutorial = false;
+    bool repeat = true;
 
     public override void BeginProcedure(ProcedureController cont)
     {
@@ -19,9 +21,6 @@ public class IntermediateProcedureTutorial : ProcedureBase
         }
         tasks = new List<TriggerResponse>()
         {
-            new IntermediateTask1(),
-            new IntermediateTask3(),
-            new IntermediateTask2(),
             new IntermediateTask1(),
             new IntermediateTask3(),
             new IntermediateTask2()
@@ -40,29 +39,48 @@ public class IntermediateProcedureTutorial : ProcedureBase
         }
         else
         {
-            controller.Controls.UnsubscribeToAllControls(HandleInput);
-            EndProcedure(true);
+            if (!repeat)
+            {
+                controller.Controls.UnsubscribeToAllControls(HandleInput);
+                EndProcedure(true);
+            }
+            else
+            {
+                currentTask = tasks.GetEnumerator();
+                repeat = false;
+                controller.Controls.intermediateTutorialHelper.WhenRepeating.SetActive(true);
+                controller.Controls.intermediateTutorialHelper.RepeatOk.SetActive(true);
+                controller.Controls.intermediateTutorialHelper.RepeatOk.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    controller.Controls.intermediateTutorialHelper.WhenRepeating.SetActive(false);
+                    controller.Controls.intermediateTutorialHelper.RepeatOk.SetActive(false);
+                    BeginTask();
+                });
+            }
         }
     }
 
     public override void RunUpdate()
     {
         //check if the task was finished
-        if (currentTask.Current != null && currentTask.Current.finished)
+        if (currentTask.Current != null)
         {
-            if (currentTask.Current.successful)
+            if (currentTask.Current.finished)
             {
+                if (currentTask.Current.successful)
+                {
                     BeginTask();
+                }
+                else
+                {
+                    controller.Controls.UnsubscribeToAllControls(HandleInput);
+                    EndProcedure(false);
+                }
             }
-            else
-            {
-                controller.Controls.UnsubscribeToAllControls(HandleInput);
-                EndProcedure(false);
-            }
+            //run task's trigger function if it needs to constantly run
+            else if (currentTask.Current.constantTrigger)
+                currentTask.Current.trigger();
         }
-        //run task's trigger function if it needs to constantly run
-        else if (currentTask.Current.constantTrigger)
-            currentTask.Current.trigger();
     }
 
     void ResetUI()
@@ -95,7 +113,7 @@ public class IntermediateProcedureTutorial : ProcedureBase
 
     public void HandleInput(BaseControl control)
     {
-        if (currentTask.Current != null && !currentTask.Current.finished)
+        if (currentTask.Current != null && !currentTask.Current.finished && !currentTask.Current.waiting)
             currentTask.Current.currentStep.Current(control);
     }
 
@@ -113,6 +131,8 @@ public class IntermediateProcedureTutorial : ProcedureBase
         protected List<Step> responseSteps;
         //the current step method for processing input
         public IEnumerator<Step> currentStep;
+
+        public bool waiting = true;
 
         //uiController for access to ui controls
         protected UIControlCenter controller;
@@ -138,6 +158,8 @@ public class IntermediateProcedureTutorial : ProcedureBase
         //Begins the trigger-response by activating trigger and getting the first step
         public virtual void Begin()
         {
+            finished = false;
+            successful = false;
             currentStep = responseSteps.GetEnumerator();
             trigger();
             NextStep();
@@ -170,7 +192,15 @@ public class IntermediateProcedureTutorial : ProcedureBase
             controller.yellowLight.Lit = false;
             controller.greenLight.Lit = true;
             controller.intermediateTutorialHelper.WhenGreenLitHint.SetActive(true);
-            controller.intermediateTutorialHelper.GreenStepOneHint.SetActive(true);
+            //controller.intermediateTutorialHelper.GreenStepOneHint.SetActive(true);
+            controller.intermediateTutorialHelper.GreenOkButton.SetActive(true);
+            controller.intermediateTutorialHelper.GreenOkButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                controller.intermediateTutorialHelper.GreenStepOneHint.SetActive(true);
+                controller.intermediateTutorialHelper.WhenGreenLitHint.SetActive(false);
+                controller.intermediateTutorialHelper.GreenOkButton.SetActive(false);
+                waiting = false;
+            });
         }
 
         public void StepOne(BaseControl control)
@@ -209,7 +239,15 @@ public class IntermediateProcedureTutorial : ProcedureBase
             controller.yellowLight.Lit = false;
             controller.greenLight.Lit = false;
             controller.intermediateTutorialHelper.WhenRedLitHint.SetActive(true);
-            controller.intermediateTutorialHelper.RedStepOneHint.SetActive(true);
+            //controller.intermediateTutorialHelper.RedStepOneHint.SetActive(true);
+            controller.intermediateTutorialHelper.RedOkButton.SetActive(true);
+            controller.intermediateTutorialHelper.RedOkButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                controller.intermediateTutorialHelper.RedStepOneHint.SetActive(true);
+                controller.intermediateTutorialHelper.WhenRedLitHint.SetActive(false);
+                controller.intermediateTutorialHelper.RedOkButton.SetActive(false);
+                waiting = false;
+            });
         }
 
         public void StepOne(BaseControl control)
@@ -250,7 +288,15 @@ public class IntermediateProcedureTutorial : ProcedureBase
             controller.yellowLight.Lit = true;
             controller.greenLight.Lit = false;
             controller.intermediateTutorialHelper.WhenYellowLitHint.SetActive(true);
-            controller.intermediateTutorialHelper.YellowStepOneHint.SetActive(true);
+            //controller.intermediateTutorialHelper.YellowStepOneHint.SetActive(true);
+            controller.intermediateTutorialHelper.YellowOkButton.SetActive(true);
+            controller.intermediateTutorialHelper.YellowOkButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                controller.intermediateTutorialHelper.YellowStepOneHint.SetActive(true);
+                controller.intermediateTutorialHelper.WhenYellowLitHint.SetActive(false);
+                controller.intermediateTutorialHelper.YellowOkButton.SetActive(false);
+                waiting = false;
+            });
         }
 
         public void StepOne(BaseControl control)
