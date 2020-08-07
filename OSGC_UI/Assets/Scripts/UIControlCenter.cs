@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(NotificationController))]
+[RequireComponent(typeof(AudioSource))]
 public class UIControlCenter : MonoBehaviour
 {
     //controls
@@ -45,6 +46,9 @@ public class UIControlCenter : MonoBehaviour
     public Toggle cursorVisibleToggle;
     bool showCursor = true;
 
+    //sound
+    AudioSource controlSound;
+
     //notification
     NotificationController notifications;
     public NotificationController Notifications
@@ -66,10 +70,12 @@ public class UIControlCenter : MonoBehaviour
         simpleTutorialHelper = GetComponent<SimpleProcedureTutorialHelper>();
         intermediateTutorialHelper = GetComponent<IntermediateProcedureTutorialHelper>();
         advancedTutorialHelper = GetComponent<AdvancedProcedureTutorialHelper>();
+        controlSound = GetComponent<AudioSource>();
     }
 
     void Start()
     {
+        SubscribeToAllControls(ControlSound);
         cursorVisibleToggle.isOn = showCursor;
     }
 
@@ -162,6 +168,14 @@ public class UIControlCenter : MonoBehaviour
     void SetCursorVisibility()
     {
         Cursor.visible = showCursor;
+    }
+
+    void ControlSound(BaseControl control)
+    {
+        if (control.ControlType != BaseControlType.Slider)
+        {
+            controlSound.Play();
+        }
     }
 
 }

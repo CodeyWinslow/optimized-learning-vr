@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 [RequireComponent(typeof(UIControlCenter))]
@@ -25,20 +24,23 @@ public class ProcedureController : MonoBehaviour
         procedures = new List<ProcedureBase>();
         ProcedureBase newProc;
 
-        //simple
-        procedures.Add(new SimpleProcedureTutorial());
-        newProc = new SimpleProcedure();
-        newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
-        //intemediate
-        procedures.Add(new IntermediateProcedureTutorial());
-        newProc = new IntermediateProcedure();
-        newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
-        //advanced
-        procedures.Add(new AdvancedProcedureTutorial());
-        newProc = new AdvancedProcedure();
-        newProc.RestartOnFailure = true;
+        ////simple
+        //procedures.Add(new SimpleProcedureTutorial());
+        //newProc = new SimpleProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+        ////intemediate
+        //procedures.Add(new IntermediateProcedureTutorial());
+        //newProc = new IntermediateProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+        ////advanced
+        //procedures.Add(new AdvancedProcedureTutorial());
+        //newProc = new AdvancedProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+
+        newProc = new IntermediateProcedure2();
         procedures.Add(newProc);
 
         if (procedures != null && procedures.Count > 0)

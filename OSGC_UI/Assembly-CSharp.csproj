@@ -74,11 +74,13 @@
     <Compile Include="Assets\Scripts\DebuggingController.cs" />
     <Compile Include="Assets\Scripts\DebuggingControllerEditor.cs" />
     <Compile Include="Assets\Scripts\NotificationController.cs" />
-    <Compile Include="Assets\Scripts\Procedures\AdvancedProcedure.cs" />
-    <Compile Include="Assets\Scripts\Procedures\IntermediateProcedure.cs" />
+    <Compile Include="Assets\Scripts\Procedures\Alpha\AdvancedProcedure.cs" />
+    <Compile Include="Assets\Scripts\Procedures\Alpha\IntermediateProcedure.cs" />
+    <Compile Include="Assets\Scripts\Procedures\Alpha\IntermediateProcedure2.cs" />
+    <Compile Include="Assets\Scripts\Procedures\Alpha\SimpleProcedure.cs" />
     <Compile Include="Assets\Scripts\Procedures\ProcedureBase.cs" />
     <Compile Include="Assets\Scripts\Procedures\ProcedureController.cs" />
-    <Compile Include="Assets\Scripts\Procedures\SimpleProcedure.cs" />
+    <Compile Include="Assets\Scripts\Procedures\SimpleProcedure2.cs" />
     <Compile Include="Assets\Scripts\SliderValueUI.cs" />
     <Compile Include="Assets\Scripts\ToggleUIScript.cs" />
     <Compile Include="Assets\Scripts\Tutorial\AdvancedProcedureTutorial.cs" />

@@ -3,7 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AdvancedProcedureTutorialHelper
     - ButtonControl
-    - DebuggingController
     - IntermediateProcedureTutorialHelper
     - JoystickControl
     - LightControl
@@ -44,7 +43,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.ToggleGroup
   sceneClasses:
-    Assets/Scenes/TouchscreenUI.unity:
+    Assets/Scenes/AlphaTouchscreen.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -58,6 +57,10 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -73,8 +76,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11532}
     - Class: 114
       Script: {instanceID: 11546}
-    - Class: 114
-      Script: {instanceID: 11604}
     - Class: 114
       Script: {instanceID: 11730}
     - Class: 114
@@ -518,7 +519,7 @@ ScriptsOnlyBuild:
     className: DebuggingControllerEditor
   - hash:
       serializedVersion: 2
-      Hash: a7ae98ba58835ecaa55f68ce006010d4
+      Hash: e50d04eefc3f94539ed2b85b1d613b94
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: IntermediateProcedureTutorialHelper
@@ -626,7 +627,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 066caca0932bbd5f3a35d507bd71a3eb
+      Hash: 89b50f8391447dfef33b6c63e3e56091
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ProcedureController
@@ -788,5 +789,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/TouchscreenUI.unity
+  - Assets/Scenes/AlphaTouchscreen.unity
   playerPath: E:/Docs/Documents/OSGC/Builds/UITest/OSGC_UI.exe
