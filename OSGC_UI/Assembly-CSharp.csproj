@@ -73,7 +73,10 @@
     <Compile Include="Assets\Scripts\Controls\ToggleControl.cs" />
     <Compile Include="Assets\Scripts\DebuggingController.cs" />
     <Compile Include="Assets\Scripts\DebuggingControllerEditor.cs" />
+    <Compile Include="Assets\Scripts\Message.cs" />
+    <Compile Include="Assets\Scripts\MessageSequence.cs" />
     <Compile Include="Assets\Scripts\NotificationController.cs" />
+    <Compile Include="Assets\Scripts\Procedures\AdvancedProcedure2.cs" />
     <Compile Include="Assets\Scripts\Procedures\Alpha\AdvancedProcedure.cs" />
     <Compile Include="Assets\Scripts\Procedures\Alpha\IntermediateProcedure.cs" />
     <Compile Include="Assets\Scripts\Procedures\Alpha\IntermediateProcedure2.cs" />
