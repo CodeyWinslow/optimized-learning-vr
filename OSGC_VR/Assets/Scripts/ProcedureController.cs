@@ -7,6 +7,7 @@ public class ProcedureController : MonoBehaviour
 {
     UIControlCenter controls;
     List<ProcedureBase> procedures;
+    public List<MessageSequence> startSequences;
     public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
     
@@ -21,29 +22,73 @@ public class ProcedureController : MonoBehaviour
     void Start()
     {
         procedures = new List<ProcedureBase>();
-        procedures.Add(new SimpleProcedure());
-        procedures.Add(new IntermediateProcedure());
-        procedures.Add(new AdvancedProcedure());
-        startScreen.SetActive(true);
+        ProcedureBase newProc;
+
+        ////simple
+        //procedures.Add(new SimpleProcedureTutorial());
+        //newProc = new SimpleProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+        ////intemediate
+        //procedures.Add(new IntermediateProcedureTutorial());
+        //newProc = new IntermediateProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+        ////advanced
+        //procedures.Add(new AdvancedProcedureTutorial());
+        //newProc = new AdvancedProcedure();
+        //newProc.RestartOnFailure = true;
+        //procedures.Add(newProc);
+
+        newProc = new SimpleProcedureTutorial2();
+        procedures.Add(newProc);
+        newProc = new SimpleProcedure2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+        newProc = new IntermediateProcedureTutorial2();
+        procedures.Add(newProc);
+        newProc = new IntermediateProcedure2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+        newProc = new AdvancedProcedureTutorial2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+        newProc = new AdvancedProcedure2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+
+        //if (procedures != null && procedures.Count > 0)
+        //    startScreen.SetActive(true);
+        if (startSequences.Count > 0 && startSequences[0] != null)
+        {
+            startSequences[0].OnceSequenceFinished += StartSequenceFinished;
+            startSequences[0].Begin();
+        }else if (procedures != null && procedures.Count > 0)
+            startScreen.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if we have a current procedure
         if (currentProc != null)
         {
-            if (currentProc.Finished)
+            if (currentProc.Running)
             {
-                if (currentProc.Success)
-                    Controls.Notifications.ShowNotification("Finished successfully!");
-                else
-                    Controls.Notifications.ShowNotification("FAILED");
+                //wrap it up if it's finished
+                if (currentProc.Finished)
+                {
+                    if (currentProc.Success)
+                        Controls.Notifications.ShowNotification("Finished successfully!");
+                    else
+                        Controls.Notifications.ShowNotification("FAILED");
 
-                FinishedProcedure(currentProc.Success);
-                currentProc = null;
+                    FinishedProcedure(currentProc.Success, currentProc.RestartOnFailure);
+                    currentProc.Stop();
+                } //call its update function if not
+                else
+                    currentProc.RunUpdate();
             }
-            else if (currentProc != null)
-                currentProc.RunUpdate();
         }
     }
 
@@ -51,19 +96,26 @@ public class ProcedureController : MonoBehaviour
     {
         if (procIndex < procedures.Count)
         {
-            currentProc = procedures[procIndex++];
+            //advance to next only if beginning, successful, or ResartOnFailure is false
+            if (currentProc == null || currentProc.Success || !currentProc.RestartOnFailure)
+            {
+                currentProc = procedures[procIndex++];
+            }
             currentProc.BeginProcedure(this);
         }
-        else
+        else if (currentProc != null && currentProc.RestartOnFailure && !currentProc.Success)
         {
-            Debug.Log("All procedures finished!");
-            currentProc = null;
+            currentProc.BeginProcedure(this);
         }
     }
 
-    void FinishedProcedure(bool success)
+    void FinishedProcedure(bool success, bool restarting)
     {
-        if (procIndex == procedures.Count)
+        //only do special message if either the procedure was successful,
+        //or if it was failed and restartOnFailure is not true
+        if (procIndex == procedures.Count
+            && (success ||
+                (!success && !restarting)))
         {
             string message = "";
 
@@ -75,15 +127,42 @@ public class ProcedureController : MonoBehaviour
             message += "Finished all procedures.";
             controls.Notifications.ShowNotification(message);
         }
+        else if (!success && restarting)
+        {
+            if (procIndex - 1 >= 0 &&
+                startSequences.Count > procIndex - 1
+                && startSequences[procIndex - 1] != null)
+            {
+                //startSequences[procIndex-1].OnceSequenceFinished += StartSequenceFinished;
+                startSequences[procIndex - 1].Begin();
+            }
+            //startScreen.SetActive(true);
+        }
         else
         {
-            startScreen.SetActive(true);
+            if (startSequences.Count > procIndex
+                && startSequences[procIndex] != null)
+            {
+                startSequences[procIndex].OnceSequenceFinished += StartSequenceFinished;
+                startSequences[procIndex].Begin();
+            }
+            else
+            {
+                startScreen.SetActive(true);
+            }
         }
+    }
+
+    public void StartSequenceFinished()
+    {
+        startScreen.SetActive(true);
     }
 
     public void StartScreenPressed()
     {
         startScreen.SetActive(false);
+        //if (startSequences.Count > procIndex && startSequences[procIndex] != null)
+        //    startSequences[procIndex].Finish();
         controls.Notifications.DismissNotificationPressed();
         StartNextProcedure();
     }

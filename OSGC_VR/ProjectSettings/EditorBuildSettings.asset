@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ShipVR.unity
+    guid: 228a2eca5c7cf5d49a726d85d974493e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c90a46985853c754ba24dd57a6e03136,
       type: 2}

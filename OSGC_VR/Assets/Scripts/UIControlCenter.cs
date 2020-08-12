@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Valve.VR;
 
 [RequireComponent(typeof(NotificationController))]
+[RequireComponent(typeof(AudioSource))]
 public class UIControlCenter : MonoBehaviour
 {
     //controls
@@ -40,11 +41,15 @@ public class UIControlCenter : MonoBehaviour
     //pausing
     public Button BackButton;
     public Button ExitButton;
+    public Button RestartButton;
     public GameObject pauseScreen;
 
     //settings
     public Toggle cursorVisibleToggle;
     bool showCursor = true;
+
+    //sound
+    AudioSource controlSound;
 
     //notification
     NotificationController notifications;
@@ -53,17 +58,34 @@ public class UIControlCenter : MonoBehaviour
         get { return notifications; }
     }
 
+    //tutorials
+    public SimpleProcedureTutorialHelper simpleTutorialHelper;
+    public IntermediateProcedureTutorialHelper intermediateTutorialHelper;
+    public AdvancedProcedureTutorialHelper advancedTutorialHelper;
+
+    public SimpleProcedureTutorialHelper2 simpleTutorialHelper2;
+    public IntermediateProcedureTutorialHelper2 intermediateTutorialHelper2;
+    public AdvancedProcedureTutorialHelper2 advancedTutorialHelper2;
+
     void Awake()
     {
-        SteamVR.Initialize(true);
         BackButton.onClick.AddListener(OnBackButton);
         ExitButton.onClick.AddListener(OnExitButton);
+        RestartButton.onClick.AddListener(OnRestartButton);
         cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
         notifications = GetComponent<NotificationController>();
+        simpleTutorialHelper = GetComponent<SimpleProcedureTutorialHelper>();
+        intermediateTutorialHelper = GetComponent<IntermediateProcedureTutorialHelper>();
+        advancedTutorialHelper = GetComponent<AdvancedProcedureTutorialHelper>();
+        simpleTutorialHelper2 = GetComponent<SimpleProcedureTutorialHelper2>();
+        intermediateTutorialHelper2 = GetComponent<IntermediateProcedureTutorialHelper2>();
+        advancedTutorialHelper2 = GetComponent<AdvancedProcedureTutorialHelper2>();
+        controlSound = GetComponent<AudioSource>();
     }
 
     void Start()
     {
+        SubscribeToAllControls(ControlSound);
         cursorVisibleToggle.isOn = showCursor;
     }
 
@@ -147,6 +169,11 @@ public class UIControlCenter : MonoBehaviour
         Application.Quit();
     }
 
+    void OnRestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     void OnShowCursorToggle(bool show)
     {
         showCursor = show;
@@ -156,6 +183,14 @@ public class UIControlCenter : MonoBehaviour
     void SetCursorVisibility()
     {
         Cursor.visible = showCursor;
+    }
+
+    void ControlSound(BaseControl control)
+    {
+        if (control.ControlType != BaseControlType.Slider)
+        {
+            controlSound.Play();
+        }
     }
 
 }
