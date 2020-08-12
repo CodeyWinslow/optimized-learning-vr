@@ -1,0 +1,8 @@
+Week Schedule Plan
+Wednesday
+	Polish latest build (scrap advanced procedure? See Phil)
+	Get VR to work
+Thursday
+	Finish VR implementation
+Friday
+	Test VR implementation

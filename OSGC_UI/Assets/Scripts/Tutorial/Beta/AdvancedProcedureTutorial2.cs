@@ -77,7 +77,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         tut.ExplainSetting1b.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainSetting2a.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainSetting2b.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
-        tut.ExplainSetting2c.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
+        tut.ExplainSetting2c.GetComponentInChildren<Button>(true).onClick.AddListener(ExplainButtonClicked);
         tut.ExplainMeter1c.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainSetting1c.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainEnding.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
@@ -136,6 +136,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                 tutWait = false;
                 break;
             case TutState.ExplainSetting2c:
+                tut.ExplainSetting2c.GetComponentInChildren<Button>().gameObject.SetActive(false);
                 tut.ExplainSetting2c.SetActive(false);
                 tut.Toggle2Hintb.SetActive(false);
                 tut.Toggle1Hinta.SetActive(true);
@@ -312,6 +313,12 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                 tut.Toggle2Hinta.SetActive(false);
                 tut.ExplainMeter1b.SetActive(true);
                 curState = TutState.ExplainMeter1b;
+            }
+
+            if (curState == TutState.ExplainSetting2c
+                && control == controller.Controls.setting2)
+            {
+                tut.ExplainSetting2c.GetComponentInChildren<Button>(true).gameObject.SetActive(true);
             }
 
             if (curState == TutState.WaitForToggle1
