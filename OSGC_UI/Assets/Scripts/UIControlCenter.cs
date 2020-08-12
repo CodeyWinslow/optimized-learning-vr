@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(NotificationController))]
@@ -40,6 +41,7 @@ public class UIControlCenter : MonoBehaviour
     //pausing
     public Button BackButton;
     public Button ExitButton;
+    public Button RestartButton;
     public GameObject pauseScreen;
 
     //settings
@@ -61,15 +63,23 @@ public class UIControlCenter : MonoBehaviour
     public IntermediateProcedureTutorialHelper intermediateTutorialHelper;
     public AdvancedProcedureTutorialHelper advancedTutorialHelper;
 
+    public SimpleProcedureTutorialHelper2 simpleTutorialHelper2;
+    public IntermediateProcedureTutorialHelper2 intermediateTutorialHelper2;
+    public AdvancedProcedureTutorialHelper2 advancedTutorialHelper2;
+
     void Awake()
     {
         BackButton.onClick.AddListener(OnBackButton);
         ExitButton.onClick.AddListener(OnExitButton);
+        RestartButton.onClick.AddListener(OnRestartButton);
         cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
         notifications = GetComponent<NotificationController>();
         simpleTutorialHelper = GetComponent<SimpleProcedureTutorialHelper>();
         intermediateTutorialHelper = GetComponent<IntermediateProcedureTutorialHelper>();
         advancedTutorialHelper = GetComponent<AdvancedProcedureTutorialHelper>();
+        simpleTutorialHelper2 = GetComponent<SimpleProcedureTutorialHelper2>();
+        intermediateTutorialHelper2 = GetComponent<IntermediateProcedureTutorialHelper2>();
+        advancedTutorialHelper2 = GetComponent<AdvancedProcedureTutorialHelper2>();
         controlSound = GetComponent<AudioSource>();
     }
 
@@ -157,6 +167,11 @@ public class UIControlCenter : MonoBehaviour
     void OnExitButton()
     {
         Application.Quit();
+    }
+
+    void OnRestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void OnShowCursorToggle(bool show)

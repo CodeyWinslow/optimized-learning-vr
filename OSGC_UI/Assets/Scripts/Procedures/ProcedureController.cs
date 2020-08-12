@@ -40,13 +40,31 @@ public class ProcedureController : MonoBehaviour
         //newProc.RestartOnFailure = true;
         //procedures.Add(newProc);
 
+        newProc = new SimpleProcedureTutorial2();
+        procedures.Add(newProc);
+        newProc = new SimpleProcedure2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+        newProc = new IntermediateProcedureTutorial2();
+        procedures.Add(newProc);
+        newProc = new IntermediateProcedure2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
+        newProc = new AdvancedProcedureTutorial2();
+        newProc.RestartOnFailure = true;
+        procedures.Add(newProc);
         newProc = new AdvancedProcedure2();
+        newProc.RestartOnFailure = true;
         procedures.Add(newProc);
 
-        if (procedures != null && procedures.Count > 0)
-            startScreen.SetActive(true);
+        //if (procedures != null && procedures.Count > 0)
+        //    startScreen.SetActive(true);
         if (startSequences.Count > 0 && startSequences[0] != null)
+        {
+            startSequences[0].OnceSequenceFinished += StartSequenceFinished;
             startSequences[0].Begin();
+        }else if (procedures != null && procedures.Count > 0)
+            startScreen.SetActive(true);
     }
 
     // Update is called once per frame
@@ -109,19 +127,42 @@ public class ProcedureController : MonoBehaviour
             message += "Finished all procedures.";
             controls.Notifications.ShowNotification(message);
         }
+        else if (!success && restarting)
+        {
+            if (procIndex - 1 >= 0 &&
+                startSequences.Count > procIndex - 1
+                && startSequences[procIndex - 1] != null)
+            {
+                //startSequences[procIndex-1].OnceSequenceFinished += StartSequenceFinished;
+                startSequences[procIndex - 1].Begin();
+            }
+            //startScreen.SetActive(true);
+        }
         else
         {
-            if (startSequences.Count > procIndex && startSequences[procIndex] != null)
+            if (startSequences.Count > procIndex
+                && startSequences[procIndex] != null)
+            {
+                startSequences[procIndex].OnceSequenceFinished += StartSequenceFinished;
                 startSequences[procIndex].Begin();
-            startScreen.SetActive(true);
+            }
+            else
+            {
+                startScreen.SetActive(true);
+            }
         }
+    }
+
+    public void StartSequenceFinished()
+    {
+        startScreen.SetActive(true);
     }
 
     public void StartScreenPressed()
     {
         startScreen.SetActive(false);
-        if (startSequences.Count > procIndex && startSequences[procIndex] != null)
-            startSequences[procIndex].Finish();
+        //if (startSequences.Count > procIndex && startSequences[procIndex] != null)
+        //    startSequences[procIndex].Finish();
         controls.Notifications.DismissNotificationPressed();
         StartNextProcedure();
     }

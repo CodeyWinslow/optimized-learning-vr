@@ -11,13 +11,7 @@ public class MessageSequence : MonoBehaviour
     List<Message>.Enumerator currentMessage;
 
     void Awake()
-    {
-        if (messages != null)
-        {
-            currentMessage = messages.GetEnumerator();
-            currentMessage.MoveNext();
-        }
-
+    {     
         foreach(Message m in messages)
         {
             m.onClick += NextMessage;
@@ -26,6 +20,12 @@ public class MessageSequence : MonoBehaviour
 
     public void Begin()
     {
+        if (messages != null)
+        {
+            currentMessage = messages.GetEnumerator();
+            currentMessage.MoveNext();
+        }
+
         if (currentMessage.Current != null)
             currentMessage.Current.Show();
     }

@@ -1,16 +1,19 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AdvancedProcedureTutorialHelper
+    - AdvancedProcedureTutorialHelper2
     - ButtonControl
-    - IntermediateProcedureTutorialHelper
+    - DebuggingController
+    - IntermediateProcedureTutorialHelper2
     - JoystickControl
     - LightControl
+    - Message
+    - MessageSequence
     - MeterControl
     - NotificationController
     - ProcedureController
     - SettingControl
-    - SimpleProcedureTutorialHelper
+    - SimpleProcedureTutorialHelper2
     - SliderControl
     - SliderValueUI
     - ToggleControl
@@ -43,7 +46,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.ToggleGroup
   sceneClasses:
-    Assets/Scenes/AlphaTouchscreen.unity:
+    Assets/Scenes/TouchscreenUI.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -69,53 +72,59 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11452}
+      Script: {instanceID: 11360}
     - Class: 114
-      Script: {instanceID: 11478}
+      Script: {instanceID: 11454}
     - Class: 114
-      Script: {instanceID: 11532}
+      Script: {instanceID: 11480}
     - Class: 114
-      Script: {instanceID: 11546}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11730}
+      Script: {instanceID: 11548}
     - Class: 114
-      Script: {instanceID: 11782}
+      Script: {instanceID: 11606}
     - Class: 114
-      Script: {instanceID: 12010}
+      Script: {instanceID: 11732}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 11786}
+    - Class: 114
+      Script: {instanceID: 11946}
+    - Class: 114
+      Script: {instanceID: 12016}
     - Class: 114
       Script: {instanceID: 12046}
     - Class: 114
-      Script: {instanceID: 12228}
+      Script: {instanceID: 12052}
     - Class: 114
-      Script: {instanceID: 12492}
+      Script: {instanceID: 12236}
     - Class: 114
-      Script: {instanceID: 12508}
+      Script: {instanceID: 12246}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12356}
     - Class: 114
-      Script: {instanceID: 12640}
+      Script: {instanceID: 12504}
     - Class: 114
-      Script: {instanceID: 12828}
+      Script: {instanceID: 12650}
     - Class: 114
-      Script: {instanceID: 12974}
+      Script: {instanceID: 12988}
     - Class: 114
-      Script: {instanceID: 13518}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 13756}
+      Script: {instanceID: 13772}
     - Class: 114
-      Script: {instanceID: 13838}
+      Script: {instanceID: 13854}
     - Class: 114
-      Script: {instanceID: 14322}
+      Script: {instanceID: 14240}
     - Class: 114
-      Script: {instanceID: 14392}
+      Script: {instanceID: 14340}
     - Class: 114
-      Script: {instanceID: 14402}
+      Script: {instanceID: 14412}
     - Class: 114
-      Script: {instanceID: 14414}
+      Script: {instanceID: 14422}
     - Class: 114
-      Script: {instanceID: 14464}
+      Script: {instanceID: 14434}
+    - Class: 114
+      Script: {instanceID: 14484}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -175,6 +184,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: eff62cd46ae36b584134322ee855a22a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleProcedureTutorialHelper2
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -369,13 +384,19 @@ ScriptsOnlyBuild:
     className: PixelPerfectCamera
   - hash:
       serializedVersion: 2
+      Hash: fa7517ee4dce4b726a4860ae887894de
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AdvancedProcedureTutorialHelper2
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: d79746cbb99c0fb925fce7abbdff9887
+      Hash: 57676df9078090490189c71aa47af714
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIControlCenter
@@ -423,6 +444,12 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 3688192897440a737b39476cc7b752bd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MessageSequence
+  - hash:
+      serializedVersion: 2
       Hash: 0edeba255bdbade25edc357f1412ba38
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
@@ -447,16 +474,16 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: c113e7a4e697633dad2a33070f4c2262
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IntermediateProcedureTutorialHelper2
+  - hash:
+      serializedVersion: 2
       Hash: d204acd514bb2e3043cd40c938aea632
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SettingControl
-  - hash:
-      serializedVersion: 2
-      Hash: 75c77bf23d6fd4054b1e2d72bc21fba0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AdvancedProcedureTutorialHelper
   - hash:
       serializedVersion: 2
       Hash: 7e96d4192b7b2bc4fd7539c421dc1512
@@ -627,7 +654,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 89b50f8391447dfef33b6c63e3e56091
+      Hash: f0a5b9044eb1462a307aa6dc2128e4a4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ProcedureController
@@ -693,10 +720,22 @@ ScriptsOnlyBuild:
     className: TextMeshPro
   - hash:
       serializedVersion: 2
+      Hash: 2ab326c5fde709fe3426b99b583b5a82
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AdvancedProcedureTutorialHelper
+  - hash:
+      serializedVersion: 2
       Hash: 3165968ba45c74472d279ba04455fccb
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: af0c565b049ab58dc51daf71620ad991
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Message
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -789,5 +828,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/AlphaTouchscreen.unity
+  - Assets/Scenes/TouchscreenUI.unity
   playerPath: E:/Docs/Documents/OSGC/Builds/UITest/OSGC_UI.exe
