@@ -1,0 +1,324 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8544836900637047255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8544836900637047249}
+  - component: {fileID: 8544836900637047254}
+  - component: {fileID: 8544836900637047248}
+  - component: {fileID: 8544836900637047251}
+  - component: {fileID: 8544836900637047250}
+  - component: {fileID: 1256741509332840420}
+  - component: {fileID: 4811568812139955134}
+  - component: {fileID: 1445480899201128160}
+  - component: {fileID: 8544836898521558028}
+  m_Layer: 0
+  m_Name: UIControl 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8544836900637047249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.018165767, y: 0.5265518, z: -9.212891}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8544836900637047254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35084de3eb124a94c9c0b80436d6e437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenLight: {fileID: 0}
+  yellowLight: {fileID: 0}
+  redLight: {fileID: 0}
+  meter1: {fileID: 0}
+  meter2: {fileID: 0}
+  meter3: {fileID: 0}
+  setting1: {fileID: 0}
+  setting2: {fileID: 0}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  button4: {fileID: 0}
+  button5: {fileID: 0}
+  button6: {fileID: 0}
+  button7: {fileID: 0}
+  button8: {fileID: 0}
+  button9: {fileID: 0}
+  joystick: {fileID: 0}
+  toggle1: {fileID: 0}
+  toggle2: {fileID: 0}
+  toggle3: {fileID: 0}
+  toggle4: {fileID: 0}
+  slider1: {fileID: 0}
+  slider2: {fileID: 0}
+  slider3: {fileID: 0}
+  simpleTutorialHelper: {fileID: 0}
+  intermediateTutorialHelper: {fileID: 0}
+  advancedTutorialHelper: {fileID: 0}
+  simpleTutorialHelper2: {fileID: 0}
+  intermediateTutorialHelper2: {fileID: 0}
+  advancedTutorialHelper2: {fileID: 0}
+--- !u!114 &8544836900637047248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233ded3bea3a5574da8be5445bf2aa1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSequences:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startScreen: {fileID: 0}
+--- !u!114 &8544836900637047251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a619ede21472de74595ca8a3a9ab1aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationArea: {fileID: 0}
+  dismissNotification: {fileID: 0}
+  notificationText: {fileID: 0}
+--- !u!82 &8544836900637047250
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e98fdf85eead9394c85d555a6450baca, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1256741509332840420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec44811de5fd0549a4af2e62ad3c36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HintOne: {fileID: 0}
+  HintTwo: {fileID: 0}
+  HintThree: {fileID: 0}
+  HintFour: {fileID: 0}
+  HintFive: {fileID: 0}
+  HintSix: {fileID: 0}
+  HintSeven: {fileID: 0}
+  HintEight: {fileID: 0}
+--- !u!114 &4811568812139955134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b056750ef68614e9a3c9b871a7e717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WhenGreenHint: {fileID: 0}
+  WhenGreenButton: {fileID: 0}
+  GreenHintOne: {fileID: 0}
+  GreenHintTwo: {fileID: 0}
+  WhenYellowHint: {fileID: 0}
+  WhenYellowButton: {fileID: 0}
+  YellowHintOne: {fileID: 0}
+  YellowHintTwo: {fileID: 0}
+  YellowHintThree: {fileID: 0}
+  WhenRedHint: {fileID: 0}
+  WhenRedButton: {fileID: 0}
+  RedHintOne: {fileID: 0}
+  RedHintTwo: {fileID: 0}
+  RedHintThree: {fileID: 0}
+  RedHintFour: {fileID: 0}
+  RedHintFive: {fileID: 0}
+  RepeatMessage: {fileID: 0}
+--- !u!114 &1445480899201128160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfb37a3daaa5754ea7b5db1b9f00cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preamble: {fileID: 0}
+  ExplainMeter1a: {fileID: 0}
+  ExplainMeter2a: {fileID: 0}
+  ExplainMeter3: {fileID: 0}
+  Toggle2Hinta: {fileID: 0}
+  ExplainMeter1b: {fileID: 0}
+  ExplainMeter2b: {fileID: 0}
+  ExplainSetting1a: {fileID: 0}
+  ExplainSetting1b: {fileID: 0}
+  ExplainSetting2a: {fileID: 0}
+  ExplainSetting2b: {fileID: 0}
+  ExplainSetting2c: {fileID: 0}
+  Toggle2Hintb: {fileID: 0}
+  Toggle1Hinta: {fileID: 0}
+  RedLightHint: {fileID: 0}
+  YellowLightHint: {fileID: 0}
+  GreenLightHint: {fileID: 0}
+  ExplainMeter1c: {fileID: 0}
+  ExplainSetting1c: {fileID: 0}
+  Setting1Hint: {fileID: 0}
+  Setting2Hint: {fileID: 0}
+  Toggle1Hintb: {fileID: 0}
+  ExplainEnding: {fileID: 0}
+--- !u!114 &8544836898521558028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544836900637047255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e2f48a76139234cb5d9ea8321e1338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackButton: {fileID: 0}
+  ExitButton: {fileID: 0}
+  RestartButton: {fileID: 0}
+  ProceduresButton: {fileID: 0}
+  procedureBackButton: {fileID: 0}
+  procedure1TutorialButton: {fileID: 0}
+  procedure1Button: {fileID: 0}
+  procedure2TutorialButton: {fileID: 0}
+  procedure2Button: {fileID: 0}
+  procedure3TutorialButton: {fileID: 0}
+  procedure3Button: {fileID: 0}
+  pauseScreen: {fileID: 0}
+  proceduresScreen: {fileID: 0}
+  cursorVisibleToggle: {fileID: 0}

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class IntermediateProcedure2 : ProcedureBase
 {
     TriggerResponse currentTask;
@@ -21,6 +19,12 @@ public class IntermediateProcedure2 : ProcedureBase
         ResetUI();
         BeginTask();
         controller.Controls.SubscribeToAllControls(HandleInput);
+    }
+
+    public override void Stop()
+    {
+        if (Running) controller.Controls.UnsubscribeToAllControls(HandleInput);
+        base.Stop();
     }
 
     void BeginTask()

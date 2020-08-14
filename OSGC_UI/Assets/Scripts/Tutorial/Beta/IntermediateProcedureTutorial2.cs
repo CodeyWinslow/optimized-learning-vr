@@ -32,6 +32,13 @@ public class IntermediateProcedureTutorial2 : ProcedureBase
         controller.Controls.SubscribeToAllControls(HandleInput);
     }
 
+    public override void Stop()
+    {
+        if (Running) controller.Controls.UnsubscribeToAllControls(HandleInput);
+        controller.Controls.intermediateTutorialHelper2.TurnAllOff();
+        base.Stop();
+    }
+
     void BeginTask()
     {
         ResetUI();

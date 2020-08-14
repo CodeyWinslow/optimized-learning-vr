@@ -19,6 +19,10 @@ namespace Valve.VR.InteractionSystem
 
         protected Hand currentHand;
 
+		//custom
+		public const float clickTime = 0.2f; //seconds to distinguish a click
+		float clickTimer;
+
 		//-------------------------------------------------
 		protected virtual void Awake()
 		{
@@ -36,6 +40,9 @@ namespace Valve.VR.InteractionSystem
 			currentHand = hand;
 			InputModule.instance.HoverBegin( gameObject );
 			ControllerButtonHints.ShowButtonHint( hand, hand.uiInteractAction);
+
+			//custom
+			clickTimer = clickTime;
 		}
 
 
@@ -45,18 +52,30 @@ namespace Valve.VR.InteractionSystem
 			InputModule.instance.HoverEnd( gameObject );
 			ControllerButtonHints.HideButtonHint( hand, hand.uiInteractAction);
 			currentHand = null;
+
+			//custom
+			if (clickTimer > 0)
+            {
+				InputModule.instance.Submit(gameObject);
+			}
 		}
 
 
         //-------------------------------------------------
-        protected virtual void HandHoverUpdate( Hand hand )
-		{
-			if ( hand.uiInteractAction != null && hand.uiInteractAction.GetStateDown(hand.handType) )
-			{
-				InputModule.instance.Submit( gameObject );
-				ControllerButtonHints.HideButtonHint( hand, hand.uiInteractAction);
-			}
-		}
+  //      protected virtual void HandHoverUpdate( Hand hand )
+		//{
+		//	if ( hand.uiInteractAction != null && hand.uiInteractAction.GetStateDown(hand.handType) )
+		//	{
+		//		InputModule.instance.Submit( gameObject );
+		//		ControllerButtonHints.HideButtonHint( hand, hand.uiInteractAction);
+		//	}
+		//}
+
+		//custom
+		protected virtual void HandHoverUpdate(Hand hand)
+        {
+			if (clickTimer > 0) clickTimer -= Time.deltaTime;
+        }
 
 
         //-------------------------------------------------

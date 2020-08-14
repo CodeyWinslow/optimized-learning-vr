@@ -38,16 +38,6 @@ public class UIControlCenter : MonoBehaviour
     public SliderControl slider2;
     public SliderControl slider3;
 
-    //pausing
-    public Button BackButton;
-    public Button ExitButton;
-    public Button RestartButton;
-    public GameObject pauseScreen;
-
-    //settings
-    public Toggle cursorVisibleToggle;
-    bool showCursor = true;
-
     //sound
     AudioSource controlSound;
 
@@ -69,10 +59,7 @@ public class UIControlCenter : MonoBehaviour
 
     void Awake()
     {
-        BackButton.onClick.AddListener(OnBackButton);
-        ExitButton.onClick.AddListener(OnExitButton);
-        RestartButton.onClick.AddListener(OnRestartButton);
-        cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
+        
         notifications = GetComponent<NotificationController>();
         simpleTutorialHelper = GetComponent<SimpleProcedureTutorialHelper>();
         intermediateTutorialHelper = GetComponent<IntermediateProcedureTutorialHelper>();
@@ -86,16 +73,12 @@ public class UIControlCenter : MonoBehaviour
     void Start()
     {
         SubscribeToAllControls(ControlSound);
-        cursorVisibleToggle.isOn = showCursor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            pauseScreen.SetActive(true);
-        }
+        
     }
 
     //Used to subscripe to all UI control events
@@ -157,33 +140,7 @@ public class UIControlCenter : MonoBehaviour
         setting2.SettingChangedEvent -= handler;
     }
 
-    //pause screen logic
-
-    void OnBackButton()
-    {
-        pauseScreen.SetActive(false);
-    }
-
-    void OnExitButton()
-    {
-        Application.Quit();
-    }
-
-    void OnRestartButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    void OnShowCursorToggle(bool show)
-    {
-        showCursor = show;
-        SetCursorVisibility();
-    }
-
-    void SetCursorVisibility()
-    {
-        Cursor.visible = showCursor;
-    }
+    
 
     void ControlSound(BaseControl control)
     {

@@ -34,7 +34,7 @@ public abstract class ProcedureBase
         //running = false; //defer stopping to Stop function
     }
 
-    public void Stop()
+    public virtual void Stop()
     {
         running = false;
     }

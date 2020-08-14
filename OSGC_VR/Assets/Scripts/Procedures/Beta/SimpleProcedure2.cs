@@ -39,6 +39,13 @@ public class SimpleProcedure2 : ProcedureBase
         controller.Controls.SubscribeToAllControls(UIHandler);
     }
 
+    public override void Stop()
+    {
+        greenTimerOn = false;
+        if (Running) controller.Controls.UnsubscribeToAllControls(UIHandler);
+        base.Stop();
+    }
+
     public override void RunUpdate()
     {
         if (greenTimerOn)

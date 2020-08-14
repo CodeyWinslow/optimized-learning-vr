@@ -6,13 +6,49 @@ using UnityEngine;
 public class ProcedureController : MonoBehaviour
 {
     UIControlCenter controls;
-    List<ProcedureBase> procedures;
+
+    ProcedureBase[] procedures;
+    const int procedureCount = 6;
+
     public List<MessageSequence> startSequences;
     public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
     
     int procIndex = 0;
     ProcedureBase currentProc;
+
+    public void LoadProcedure(int index)
+    {
+        if (index < 0 || index >= procedureCount) return;
+
+        if (currentProc != null)
+        {
+            currentProc.Stop();
+            if (procIndex - 1 < startSequences.Count && procIndex - 1 >= 0)
+                startSequences[procIndex - 1].Finish();
+        }
+        else if (procIndex < startSequences.Count)
+        {
+            startSequences[procIndex].Finish();
+        }
+
+        startScreen.SetActive(false);
+
+        procIndex = index;
+
+        currentProc = null;
+
+        if (startSequences.Count > procIndex
+                && startSequences[procIndex] != null)
+        {
+            startSequences[procIndex].OnceSequenceFinished += StartSequenceFinished;
+            startSequences[procIndex].Begin();
+        }
+        else
+        {
+            startScreen.SetActive(true);
+        }
+    }
 
     void Awake()
     {
@@ -21,41 +57,30 @@ public class ProcedureController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        procedures = new List<ProcedureBase>();
+        procedures = new ProcedureBase[procedureCount];
         ProcedureBase newProc;
 
-        ////simple
-        //procedures.Add(new SimpleProcedureTutorial());
-        //newProc = new SimpleProcedure();
-        //newProc.RestartOnFailure = true;
-        //procedures.Add(newProc);
-        ////intemediate
-        //procedures.Add(new IntermediateProcedureTutorial());
-        //newProc = new IntermediateProcedure();
-        //newProc.RestartOnFailure = true;
-        //procedures.Add(newProc);
-        ////advanced
-        //procedures.Add(new AdvancedProcedureTutorial());
-        //newProc = new AdvancedProcedure();
-        //newProc.RestartOnFailure = true;
-        //procedures.Add(newProc);
-
         newProc = new SimpleProcedureTutorial2();
-        procedures.Add(newProc);
+        procedures[0] = (newProc);
+
         newProc = new SimpleProcedure2();
         newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
+        procedures[1] = (newProc);
+
         newProc = new IntermediateProcedureTutorial2();
-        procedures.Add(newProc);
+        procedures[2] = (newProc);
+
         newProc = new IntermediateProcedure2();
         newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
+        procedures[3] = (newProc);
+
         newProc = new AdvancedProcedureTutorial2();
         newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
+        procedures[4] = (newProc);
+
         newProc = new AdvancedProcedure2();
         newProc.RestartOnFailure = true;
-        procedures.Add(newProc);
+        procedures[5] = (newProc);
 
         //if (procedures != null && procedures.Count > 0)
         //    startScreen.SetActive(true);
@@ -63,7 +88,7 @@ public class ProcedureController : MonoBehaviour
         {
             startSequences[0].OnceSequenceFinished += StartSequenceFinished;
             startSequences[0].Begin();
-        }else if (procedures != null && procedures.Count > 0)
+        }else if (procedures != null && procedureCount > 0)
             startScreen.SetActive(true);
     }
 
@@ -94,7 +119,7 @@ public class ProcedureController : MonoBehaviour
 
     void StartNextProcedure()
     {
-        if (procIndex < procedures.Count)
+        if (procIndex < procedureCount)
         {
             //advance to next only if beginning, successful, or ResartOnFailure is false
             if (currentProc == null || currentProc.Success || !currentProc.RestartOnFailure)
@@ -113,7 +138,7 @@ public class ProcedureController : MonoBehaviour
     {
         //only do special message if either the procedure was successful,
         //or if it was failed and restartOnFailure is not true
-        if (procIndex == procedures.Count
+        if (procIndex == procedureCount
             && (success ||
                 (!success && !restarting)))
         {

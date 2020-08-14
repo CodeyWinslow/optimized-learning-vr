@@ -41,6 +41,14 @@ public class SimpleProcedureTutorial2 : ProcedureBase
             controller.Controls.simpleTutorialHelper2.HintOne.SetActive(true);
     }
 
+    public override void Stop()
+    {
+        greenTimerOn = false;
+        if (Running) controller.Controls.UnsubscribeToAllControls(UIHandler);
+        controller.Controls.simpleTutorialHelper2.TurnAllOff();
+        base.Stop();
+    }
+
     public override void RunUpdate()
     {
         if (greenTimerOn)

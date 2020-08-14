@@ -12,4 +12,16 @@ public class SimpleProcedureTutorialHelper2 : MonoBehaviour
     public GameObject HintSix;
     public GameObject HintSeven;
     public GameObject HintEight;
+
+    public void TurnAllOff()
+    {
+        HintOne.SetActive(false);
+        HintTwo.SetActive(false);
+        HintThree.SetActive(false);
+        HintFour.SetActive(false);
+        HintFive.SetActive(false);
+        HintSix.SetActive(false);
+        HintSeven.SetActive(false);
+        HintEight.SetActive(false);
+    }
 }

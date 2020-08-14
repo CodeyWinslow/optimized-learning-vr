@@ -28,4 +28,31 @@ public class AdvancedProcedureTutorialHelper2 : MonoBehaviour
     public GameObject Setting2Hint;
     public GameObject Toggle1Hintb;
     public GameObject ExplainEnding;
+
+    public void TurnAllOff()
+    {
+        preamble.Finish();
+        ExplainMeter1a.SetActive(false);
+        ExplainMeter2a.SetActive(false);
+        ExplainMeter3.SetActive(false);
+        Toggle2Hinta.SetActive(false);
+        ExplainMeter1b.SetActive(false);
+        ExplainMeter2b.SetActive(false);
+        ExplainSetting1a.SetActive(false);
+        ExplainSetting1b.SetActive(false);
+        ExplainSetting2a.SetActive(false);
+        ExplainSetting2b.SetActive(false);
+        ExplainSetting2c.SetActive(false);
+        Toggle2Hintb.SetActive(false);
+        Toggle1Hinta.SetActive(false);
+        RedLightHint.SetActive(false);
+        YellowLightHint.SetActive(false);
+        GreenLightHint.SetActive(false);
+        ExplainMeter1c.SetActive(false);
+        ExplainSetting1c.SetActive(false);
+        Setting1Hint.SetActive(false);
+        Setting2Hint.SetActive(false);
+        Toggle1Hintb.SetActive(false);
+        ExplainEnding.SetActive(false);
+    }
 }

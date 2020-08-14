@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MenusController.cs" />
     <Compile Include="Assets\Scripts\Controls\BaseControl.cs" />
     <Compile Include="Assets\Scripts\Controls\ButtonControl.cs" />
     <Compile Include="Assets\Scripts\Controls\JoystickControl.cs" />

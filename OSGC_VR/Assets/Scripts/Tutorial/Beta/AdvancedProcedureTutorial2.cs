@@ -63,6 +63,13 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         curState = TutState.Preamble;
     }
 
+    public override void Stop()
+    {
+        if (Running) controller.Controls.UnsubscribeToAllControls(Handler);
+        controller.Controls.advancedTutorialHelper2.TurnAllOff();
+        base.Stop();
+    }
+
     public void PreambleFinished()
     {
         curState = TutState.ExplainMeter1;

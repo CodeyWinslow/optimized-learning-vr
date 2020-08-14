@@ -6,6 +6,8 @@ using UnityEngine;
 public class AdvancedProcedure2 : ProcedureBase
 {
     bool usermode;
+    bool stopped = false;
+
     List<PowerSystem> level1systems;
     List<PowerSystem> level2systems;
     List<PowerSystem> level3systems;
@@ -19,6 +21,7 @@ public class AdvancedProcedure2 : ProcedureBase
     {
         base.BeginProcedure(cont);
         usermode = true;
+        stopped = false;
         current = 0;
         power = 0;
         SetupSystems();
@@ -27,116 +30,126 @@ public class AdvancedProcedure2 : ProcedureBase
         controller.Controls.SubscribeToAllControls(Handler);
     }
 
+    public override void Stop()
+    {
+        if (Running) controller.Controls.UnsubscribeToAllControls(Handler);
+        stopped = true;
+        base.Stop();
+    }
+
     public override void RunUpdate()
     {
-        //update all system timers and the current
-        current = 0;
-        power = 0;
-        PowerSystem curSys = GetCurrentSystem();
-
-        bool level1enabled = false;
-        foreach (PowerSystem sys in level1systems)
+        if (!stopped)
         {
-            if (sys.on)
+            //update all system timers and the current
+            current = 0;
+            power = 0;
+            PowerSystem curSys = GetCurrentSystem();
+
+            bool level1enabled = false;
+            foreach (PowerSystem sys in level1systems)
             {
-                bool notWarm = false;
-                if (!sys.WarmedUp)
+                if (sys.on)
                 {
-                    notWarm = true;
-                    sys.warmUpTimer -= Time.deltaTime;
-                }
-
-                if (sys.WarmedUp)
-                {
-                    level1enabled = true;
-                    current += sys.runningCurrent;
-                    if (notWarm && sys == curSys)
+                    bool notWarm = false;
+                    if (!sys.WarmedUp)
                     {
-                        controller.Controls.greenLight.Lit = true;
-                        controller.Controls.yellowLight.Lit = false;
-                        controller.Controls.redLight.Lit = false;
+                        notWarm = true;
+                        sys.warmUpTimer -= Time.deltaTime;
                     }
-                }
-                else
-                    current += sys.initialCurrent;
 
-                power += sys.power;
+                    if (sys.WarmedUp)
+                    {
+                        level1enabled = true;
+                        current += sys.runningCurrent;
+                        if (notWarm && sys == curSys)
+                        {
+                            controller.Controls.greenLight.Lit = true;
+                            controller.Controls.yellowLight.Lit = false;
+                            controller.Controls.redLight.Lit = false;
+                        }
+                    }
+                    else
+                        current += sys.initialCurrent;
+
+                    power += sys.power;
+                }
             }
-        }
-        bool level2enabled = false;
-        foreach (PowerSystem sys in level2systems)
-        {
-            if (sys.on)
+            bool level2enabled = false;
+            foreach (PowerSystem sys in level2systems)
             {
-                bool notWarm = false;
-                if (!sys.WarmedUp)
+                if (sys.on)
                 {
-                    notWarm = true;
-                    sys.warmUpTimer -= Time.deltaTime;
-                }
-
-                if (sys.WarmedUp)
-                {
-                    level2enabled = true;
-                    current += sys.runningCurrent;
-                    if (notWarm && sys == curSys)
+                    bool notWarm = false;
+                    if (!sys.WarmedUp)
                     {
-                        controller.Controls.greenLight.Lit = true;
-                        controller.Controls.yellowLight.Lit = false;
-                        controller.Controls.redLight.Lit = false;
+                        notWarm = true;
+                        sys.warmUpTimer -= Time.deltaTime;
                     }
-                }
-                else
-                    current += sys.initialCurrent;
 
-                power += sys.power;
+                    if (sys.WarmedUp)
+                    {
+                        level2enabled = true;
+                        current += sys.runningCurrent;
+                        if (notWarm && sys == curSys)
+                        {
+                            controller.Controls.greenLight.Lit = true;
+                            controller.Controls.yellowLight.Lit = false;
+                            controller.Controls.redLight.Lit = false;
+                        }
+                    }
+                    else
+                        current += sys.initialCurrent;
+
+                    power += sys.power;
+                }
             }
-        }
-        bool level3enabled = false;
-        foreach (PowerSystem sys in level3systems)
-        {
-            if (sys.on)
+            bool level3enabled = false;
+            foreach (PowerSystem sys in level3systems)
             {
-                bool notWarm = false;
-                if (!sys.WarmedUp)
+                if (sys.on)
                 {
-                    notWarm = true;
-                    sys.warmUpTimer -= Time.deltaTime;
-                }
-
-                if (sys.WarmedUp)
-                {
-                    level3enabled = true;
-                    current += sys.runningCurrent;
-                    if (notWarm && sys == curSys)
+                    bool notWarm = false;
+                    if (!sys.WarmedUp)
                     {
-                        controller.Controls.greenLight.Lit = true;
-                        controller.Controls.yellowLight.Lit = false;
-                        controller.Controls.redLight.Lit = false;
+                        notWarm = true;
+                        sys.warmUpTimer -= Time.deltaTime;
                     }
+
+                    if (sys.WarmedUp)
+                    {
+                        level3enabled = true;
+                        current += sys.runningCurrent;
+                        if (notWarm && sys == curSys)
+                        {
+                            controller.Controls.greenLight.Lit = true;
+                            controller.Controls.yellowLight.Lit = false;
+                            controller.Controls.redLight.Lit = false;
+                        }
+                    }
+                    else
+                        current += sys.initialCurrent;
+
+                    power += sys.power;
                 }
-                else
-                    current += sys.initialCurrent;
-
-                power += sys.power;
             }
-        }
 
-        //update UI for current
-        if (controller.Controls.toggle2.isOn)
-            controller.Controls.meter1.Value = power;
-        else
-            controller.Controls.meter1.Value = current;
+            //update UI for current
+            if (controller.Controls.toggle2.isOn)
+                controller.Controls.meter1.Value = power;
+            else
+                controller.Controls.meter1.Value = current;
 
-        if (current > 100)
-        {
-            controller.Controls.UnsubscribeToAllControls(Handler);
-            EndProcedure(false);
-        }
-        else if (power >= powerTarget && level1enabled && level2enabled && level3enabled)
-        {
-            controller.Controls.UnsubscribeToAllControls(Handler);
-            EndProcedure(true);
+            if (current > 100)
+            {
+                controller.Controls.UnsubscribeToAllControls(Handler);
+                EndProcedure(false);
+            }
+            else if (power >= powerTarget && level1enabled && level2enabled && level3enabled)
+            {
+                controller.Controls.UnsubscribeToAllControls(Handler);
+                EndProcedure(true);
+            }
         }
     }
 

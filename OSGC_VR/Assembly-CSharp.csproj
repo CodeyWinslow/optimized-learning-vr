@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MenusController.cs" />
     <Compile Include="Assets\Scripts\Controls\BaseControl.cs" />
     <Compile Include="Assets\Scripts\Controls\ButtonControl.cs" />
     <Compile Include="Assets\Scripts\Controls\JoystickControl.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Tutorial\Beta\SimpleProcedureTutorial2.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Beta\SimpleProcedureTutorialHelper2.cs" />
     <Compile Include="Assets\Scripts\UIControlCenter.cs" />
+    <Compile Include="Assets\Scripts\VR\VRSlider.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -701,6 +703,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SteamVR_Actions.csproj">
+      <Project>{17586DF5-C013-65E4-AD1A-F68523CF5280}</Project>
+      <Name>SteamVR_Actions</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
       <Project>{88B6D9C8-5264-DA0F-2A6C-DD60BB9641C2}</Project>
       <Name>SteamVR_Input_Editor</Name>
@@ -716,10 +722,6 @@
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
       <Project>{524AE42C-8295-A345-78E2-6A0D80117EC4}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="SteamVR_Actions.csproj">
-      <Project>{17586DF5-C013-65E4-AD1A-F68523CF5280}</Project>
-      <Name>SteamVR_Actions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
