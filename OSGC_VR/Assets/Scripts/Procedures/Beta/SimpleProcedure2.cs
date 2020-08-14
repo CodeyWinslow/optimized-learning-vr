@@ -16,6 +16,9 @@ public class SimpleProcedure2 : ProcedureBase
     const float greenTime = 3f;
     float greenTimer;
 
+    int totalMoves;
+    int correctMoves;
+
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
@@ -24,6 +27,8 @@ public class SimpleProcedure2 : ProcedureBase
         wrongStep = false;
         greenTimerOn = false;
         greenTimer = greenTime;
+        totalMoves = 7;
+        correctMoves = 0;
 
         steps = new List<Step>();
         steps.Add(StepOne);
@@ -37,6 +42,12 @@ public class SimpleProcedure2 : ProcedureBase
         currentStep = steps.GetEnumerator();
         NextStep();
         controller.Controls.SubscribeToAllControls(UIHandler);
+    }
+    protected override void EndProcedure(bool wasSuccessful)
+    {
+        if (controller.reporter != null)
+            controller.reporter.Add(new ProcedureReport(ProcedureType.SimpleProcedure, totalMoves, correctMoves, wasSuccessful));
+        base.EndProcedure(wasSuccessful);
     }
 
     public override void Stop()
@@ -157,6 +168,7 @@ public class SimpleProcedure2 : ProcedureBase
 
     void NextStep()
     {
+        ++correctMoves;
         if (!currentStep.MoveNext())
         {
             stepsFinished = true;

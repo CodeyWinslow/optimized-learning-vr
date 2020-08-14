@@ -11,14 +11,26 @@ public class IntermediateProcedure2 : ProcedureBase
 
     bool usermode = true;
 
+    int totalMoves = 0;
+    int correctMoves = 0;
+
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
         triggersToSucceed = baseTriggersToSucceed;
         usermode = true;
+        totalMoves = 5; //num of triggerResponses
+        correctMoves = 0;
         ResetUI();
         BeginTask();
         controller.Controls.SubscribeToAllControls(HandleInput);
+    }
+
+    protected override void EndProcedure(bool wasSuccessful)
+    {
+        if (controller.reporter != null)
+            controller.reporter.Add(new ProcedureReport(ProcedureType.IntermediateProcedure, totalMoves, correctMoves, wasSuccessful));
+        base.EndProcedure(wasSuccessful);
     }
 
     public override void Stop()
@@ -42,6 +54,7 @@ public class IntermediateProcedure2 : ProcedureBase
         {
             if (currentTask.successful)
             {
+                ++correctMoves;
                 if (--triggersToSucceed == 0)
                 {
                     controller.Controls.UnsubscribeToAllControls(HandleInput);

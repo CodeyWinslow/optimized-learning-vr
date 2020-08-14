@@ -30,6 +30,13 @@ public class AdvancedProcedure2 : ProcedureBase
         controller.Controls.SubscribeToAllControls(Handler);
     }
 
+    protected override void EndProcedure(bool wasSuccessful)
+    {
+        if (controller.reporter != null)
+            controller.reporter.Add(new ProcedureReport(ProcedureType.AdvancedProcedure, 0, 0, wasSuccessful));
+        base.EndProcedure(wasSuccessful);
+    }
+
     public override void Stop()
     {
         if (Running) controller.Controls.UnsubscribeToAllControls(Handler);

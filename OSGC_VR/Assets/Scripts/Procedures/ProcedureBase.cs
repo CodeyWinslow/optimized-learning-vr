@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ProcedureType
+{
+    SimpleProcedure,
+    IntermediateProcedure,
+    AdvancedProcedure
+}
+
 public abstract class ProcedureBase
 {
     private bool running = false;
@@ -27,7 +34,7 @@ public abstract class ProcedureBase
         running = true;
     }
 
-    protected void EndProcedure(bool wasSuccessful)
+    protected virtual void EndProcedure(bool wasSuccessful)
     {
         success = wasSuccessful;
         finished = true;

@@ -13,6 +13,7 @@ public class ProcedureController : MonoBehaviour
     public List<MessageSequence> startSequences;
     public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
+    public Reporter reporter;
     
     int procIndex = 0;
     ProcedureBase currentProc;
@@ -150,6 +151,9 @@ public class ProcedureController : MonoBehaviour
                 message += "Failed. ";
 
             message += "Finished all procedures.";
+
+            if (reporter != null) reporter.WriteReport();
+
             controls.Notifications.ShowNotification(message);
         }
         else if (!success && restarting)

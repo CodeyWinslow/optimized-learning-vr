@@ -32,6 +32,7 @@ public class MenusController : MonoBehaviour
 
     //proc controller
     ProcedureController procs;
+    bool paused;
 
     // Start is called before the first frame update
     void Awake()
@@ -51,18 +52,46 @@ public class MenusController : MonoBehaviour
         procedure2Button.onClick.AddListener(OnProc2Button);
         procedure3TutorialButton.onClick.AddListener(OnProc3TutButton);
         procedure3Button.onClick.AddListener(OnProc3Button);
+
+        paused = false;
     }
 
     private void Start()
     {
         cursorVisibleToggle.isOn = showCursor;
+        pauseScreen.SetActive(false);
+    }
+
+    public void PauseButtonPressed()
+    {
+        SetPaused(!paused);
+    }
+
+    void SetPaused(bool isPaused)
+    {
+        paused = isPaused;
+        CheckPauseScreen();
+    }
+
+    void CheckPauseScreen()
+    {
+        if (paused)
+        {
+            pauseScreen.SetActive(true);
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+            proceduresScreen.SetActive(false);
+        }
     }
 
     //pause screen logic
 
     void OnBackButton()
     {
-        pauseScreen.SetActive(false);
+        paused = false;
+        CheckPauseScreen();
     }
 
     void OnExitButton()
@@ -94,7 +123,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(0);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnProc1Button()
@@ -155,7 +184,7 @@ public class MenusController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseScreen.SetActive(true);
+            PauseButtonPressed();
         }
     }
 }

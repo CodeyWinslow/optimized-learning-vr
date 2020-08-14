@@ -42,7 +42,7 @@ namespace Valve.VR.InteractionSystem
 			ControllerButtonHints.ShowButtonHint( hand, hand.uiInteractAction);
 
 			//custom
-			clickTimer = clickTime;
+			//clickTimer = clickTime;
 		}
 
 
@@ -54,10 +54,11 @@ namespace Valve.VR.InteractionSystem
 			currentHand = null;
 
 			//custom
-			if (clickTimer > 0)
-            {
-				InputModule.instance.Submit(gameObject);
-			}
+			//if (clickTimer > 0)
+			//         {
+			//	InputModule.instance.Submit(gameObject);
+			//}
+			InputModule.instance.Submit(gameObject);
 		}
 
 

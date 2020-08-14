@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MenusController.cs" />
     <Compile Include="Assets\Scripts\Controls\BaseControl.cs" />
     <Compile Include="Assets\Scripts\Controls\ButtonControl.cs" />
     <Compile Include="Assets\Scripts\Controls\JoystickControl.cs" />
@@ -74,6 +73,7 @@
     <Compile Include="Assets\Scripts\Controls\SliderValueUI.cs" />
     <Compile Include="Assets\Scripts\Controls\ToggleControl.cs" />
     <Compile Include="Assets\Scripts\Controls\ToggleUIScript.cs" />
+    <Compile Include="Assets\Scripts\MenusController.cs" />
     <Compile Include="Assets\Scripts\Message.cs" />
     <Compile Include="Assets\Scripts\MessageSequence.cs" />
     <Compile Include="Assets\Scripts\NotificationController.cs" />
@@ -85,6 +85,8 @@
     <Compile Include="Assets\Scripts\Procedures\Beta\IntermediateProcedure2.cs" />
     <Compile Include="Assets\Scripts\Procedures\Beta\SimpleProcedure2.cs" />
     <Compile Include="Assets\Scripts\Procedures\ProcedureBase.cs" />
+    <Compile Include="Assets\Scripts\Reporting\ProcedureReport.cs" />
+    <Compile Include="Assets\Scripts\Reporting\Reporter.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\AdvancedProcedureTutorialHelper.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\IntermediateProcedureTutorial.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\IntermediateProcedureTutorialHelper.cs" />
