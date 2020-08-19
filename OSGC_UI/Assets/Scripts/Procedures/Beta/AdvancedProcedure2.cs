@@ -39,8 +39,8 @@ public class AdvancedProcedure2 : ProcedureBase
     {
         if (Running) controller.Controls.UnsubscribeToAllControls(Handler);
         stopped = true;
-        UnsetUILabels();
         ResetUI();
+        UnsetUILabels();
         base.Stop();
     }
 
@@ -159,16 +159,12 @@ public class AdvancedProcedure2 : ProcedureBase
 
             if (current > currentLimit || power < 0)
             {
-                controller.Controls.UnsubscribeToAllControls(Handler);
-                UnsetUILabels();
-                ResetUI();
+                Stop();
                 EndProcedure(false);
             }
             else if (level1enabled && level2enabled && level3enabled)
             {
-                controller.Controls.UnsubscribeToAllControls(Handler);
-                UnsetUILabels();
-                ResetUI();
+                Stop();
                 EndProcedure(true);
             }
         }

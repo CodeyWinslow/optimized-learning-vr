@@ -60,16 +60,17 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         ContextSwitched();
         controller.Controls.SubscribeToAllControls(Handler);
         tut.preamble.OnceSequenceFinished += PreambleFinished;
-        tut.preamble.Begin();
         curState = TutState.Preamble;
+        tut.preamble.Begin();
     }
 
     public override void Stop()
     {
         if (Running) controller.Controls.UnsubscribeToAllControls(Handler);
         controller.Controls.advancedTutorialHelper2.TurnAllOff();
-        UnsetUILabels();
         UnsetTutListeners();
+        ResetUI();
+        UnsetUILabels();
         base.Stop();
     }
 
@@ -328,16 +329,12 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
 
         if (current > currentLimit || power < 0) // failed
         {
-            controller.Controls.UnsubscribeToAllControls(Handler);
-            UnsetUILabels();
-            UnsetTutListeners();
+            ResetUI();
             EndProcedure(false);
         } 
         else if (level1enabled && level2enabled && level3enabled) // success
         {
-            controller.Controls.UnsubscribeToAllControls(Handler);
-            UnsetUILabels();
-            UnsetTutListeners();
+            ResetUI();
             EndProcedure(true);
         }
     }
