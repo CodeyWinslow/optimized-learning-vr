@@ -62,13 +62,10 @@ public class SimpleProcedure2 : ProcedureBase
             controller.Controls.UnsubscribeToAllControls(UIHandler);
             EndProcedure(false);
         }
-        else
+        else if (stepsFinished)
         {
-            if (stepsFinished)
-            {
-                controller.Controls.UnsubscribeToAllControls(UIHandler);
-                EndProcedure(true);
-            }
+            controller.Controls.UnsubscribeToAllControls(UIHandler);
+            EndProcedure(true);
         }
     }
 

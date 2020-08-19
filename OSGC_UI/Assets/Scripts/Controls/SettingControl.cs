@@ -17,6 +17,7 @@ public class SettingControl : BaseControl
     void Awake()
     {
         _controlType = BaseControlType.Setting;
+        SetLabel();
     }
 
     void Start()

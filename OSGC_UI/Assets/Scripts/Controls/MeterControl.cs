@@ -23,6 +23,7 @@ public class MeterControl : BaseControl
     void Awake()
     {
         _controlType = BaseControlType.Meter;
+        SetLabel();
     }
 
     void UpdateText()

@@ -20,6 +20,7 @@ public class ToggleControl : BaseControl
         buttonComp = GetComponent<Button>();
         ui = GetComponent<ToggleUIScript>();
         buttonComp.onClick.AddListener(ToggleClicked);
+        SetLabel();
     }
 
     public void ToggleClicked()

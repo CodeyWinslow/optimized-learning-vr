@@ -44,7 +44,8 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
 
     TutState curState;
 
-    const int powerTarget = 240;
+    const int startingPower = 300;
+    const int currentLimit = 100;
 
     public override void BeginProcedure(ProcedureController cont)
     {
@@ -67,11 +68,14 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
     {
         if (Running) controller.Controls.UnsubscribeToAllControls(Handler);
         controller.Controls.advancedTutorialHelper2.TurnAllOff();
+        UnsetUILabels();
+        UnsetTutListeners();
         base.Stop();
     }
 
     public void PreambleFinished()
     {
+        tut.preamble.OnceSequenceFinished -= PreambleFinished;
         curState = TutState.ExplainMeter1;
         tut.ExplainMeter1a.SetActive(true);
 
@@ -88,6 +92,23 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         tut.ExplainMeter1c.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainSetting1c.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
         tut.ExplainEnding.GetComponentInChildren<Button>().onClick.AddListener(ExplainButtonClicked);
+    }
+
+    public void UnsetTutListeners()
+    {
+        tut.ExplainMeter1a.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainMeter2a.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainMeter3.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainMeter1b.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainMeter2b.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting1a.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting1b.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting2a.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting2b.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting2c.GetComponentInChildren<Button>(true).onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainMeter1c.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainSetting1c.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
+        tut.ExplainEnding.GetComponentInChildren<Button>().onClick.RemoveListener(ExplainButtonClicked);
     }
 
     public void ExplainButtonClicked()
@@ -172,7 +193,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
     {
         //update all system timers and the current
         current = 0;
-        power = 0;
+        power = startingPower;
         PowerSystem curSys = GetCurrentSystem();
 
         bool level1enabled = false;
@@ -210,7 +231,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                 else
                     current += sys.initialCurrent;
 
-                power += sys.power;
+                power -= sys.power;
             }
         }
         bool level2enabled = false;
@@ -248,7 +269,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                 else
                     current += sys.initialCurrent;
 
-                power += sys.power;
+                power -= sys.power;
             }
         }
         bool level3enabled = false;
@@ -286,24 +307,37 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                 else
                     current += sys.initialCurrent;
 
-                power += sys.power;
+                power -= sys.power;
             }
         }
 
         //update UI for current
         if (controller.Controls.toggle2.isOn)
-            controller.Controls.meter1.Value = power;
+            controller.Controls.meter1.Value = (power < 0 ? 0 : power);
         else
             controller.Controls.meter1.Value = current;
 
-        if (current > 100)
+        if (level1enabled) { controller.Controls.button1.ToggleButton(true); }
+        else { controller.Controls.button1.ToggleButton(false); }
+
+        if (level2enabled) { controller.Controls.button2.ToggleButton(true); }
+        else { controller.Controls.button2.ToggleButton(false); }
+
+        if (level3enabled) { controller.Controls.button3.ToggleButton(true); }
+        else { controller.Controls.button3.ToggleButton(false); }
+
+        if (current > currentLimit || power < 0) // failed
         {
             controller.Controls.UnsubscribeToAllControls(Handler);
+            UnsetUILabels();
+            UnsetTutListeners();
             EndProcedure(false);
-        }
-        else if (power >= powerTarget && level1enabled && level2enabled && level3enabled)
+        } 
+        else if (level1enabled && level2enabled && level3enabled) // success
         {
             controller.Controls.UnsubscribeToAllControls(Handler);
+            UnsetUILabels();
+            UnsetTutListeners();
             EndProcedure(true);
         }
     }
@@ -386,7 +420,109 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
                     system.ResetTimer();
                 }
             }
+
+            //light up buttons
+            if (control == controller.Controls.button1)
+            {
+                int ii = 0;
+                bool found = false;
+                for (ii = 0; ii < level1systems.Count && !found; ++ii)
+                {
+                    if (level1systems[ii].on && level1systems[ii].WarmedUp)
+                        found = true;
+                }
+
+                if (found)
+                {
+                    controller.Controls.setting1.option1.isOn = true;
+
+                    switch (--ii)
+                    {
+                        case 0:
+                            controller.Controls.setting2.option1.isOn = true;
+                            break;
+                        case 1:
+                            controller.Controls.setting2.option2.isOn = true;
+                            break;
+                        case 2:
+                            controller.Controls.setting2.option3.isOn = true;
+                            break;
+                    }
+
+                    ContextSwitched();
+                }
+            }
+            else if (control == controller.Controls.button2)
+            {
+                int ii = 0;
+                bool found = false;
+                for (ii = 0; ii < level2systems.Count && !found; ++ii)
+                {
+                    if (level2systems[ii].on && level2systems[ii].WarmedUp)
+                        found = true;
+                }
+
+                if (found)
+                {
+                    controller.Controls.setting1.option2.isOn = true;
+
+                    switch (--ii)
+                    {
+                        case 0:
+                            controller.Controls.setting2.option1.isOn = true;
+                            break;
+                        case 1:
+                            controller.Controls.setting2.option2.isOn = true;
+                            break;
+                        case 2:
+                            controller.Controls.setting2.option3.isOn = true;
+                            break;
+                    }
+                    ContextSwitched();
+                }
+            }
+            else if (control == controller.Controls.button3)
+            {
+                int ii = 0;
+                bool found = false;
+                for (ii = 0; ii < level1systems.Count && !found; ++ii)
+                {
+                    if (level3systems[ii].on && level3systems[ii].WarmedUp)
+                        found = true;
+                }
+
+                if (found)
+                {
+                    controller.Controls.setting1.option3.isOn = true;
+
+                    switch (--ii)
+                    {
+                        case 0:
+                            controller.Controls.setting2.option1.isOn = true;
+                            break;
+                        case 1:
+                            controller.Controls.setting2.option2.isOn = true;
+                            break;
+                        case 2:
+                            controller.Controls.setting2.option3.isOn = true;
+                            break;
+                    }
+                    ContextSwitched();
+                }
+            }
         }
+    }
+
+    //reset labels to original
+    void UnsetUILabels()
+    {
+        controller.Controls.setting1.SetLabel();
+        controller.Controls.setting2.SetLabel();
+        controller.Controls.toggle1.SetLabel();
+        controller.Controls.toggle2.SetLabel();
+        controller.Controls.meter1.SetLabel();
+        controller.Controls.meter2.SetLabel();
+        controller.Controls.meter3.SetLabel();
     }
 
     void ResetUI()
@@ -417,6 +553,15 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         controller.Controls.slider1.Value = 0.5f;
         controller.Controls.slider2.Value = 0.5f;
         controller.Controls.slider3.Value = 0.5f;
+
+        //labels
+        controller.Controls.setting1.SetLabel("Backup System");
+        controller.Controls.setting2.SetLabel("Oxygen");
+        controller.Controls.toggle1.SetLabel("On/Off");
+        controller.Controls.toggle2.SetLabel("Current");
+        controller.Controls.meter1.SetLabel("Total Current");
+        controller.Controls.meter2.SetLabel("Initial Current");
+        controller.Controls.meter3.SetLabel("Running Current");
 
         usermode = true;
     }
@@ -473,36 +618,49 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         {
             controller.Controls.meter2.Value = system.power;
             controller.Controls.meter3.Value = 0;
+            controller.Controls.toggle2.SetLabel("Power");
+            controller.Controls.meter1.SetLabel("Total Power");
+            controller.Controls.meter2.SetLabel("System Power");
+            controller.Controls.meter3.SetLabel();
         }
         else
         {
             controller.Controls.meter2.Value = system.initialCurrent;
             controller.Controls.meter3.Value = system.runningCurrent;
+            controller.Controls.toggle2.SetLabel("Current");
+            controller.Controls.meter1.SetLabel("Total Current");
+            controller.Controls.meter2.SetLabel("Initial Current");
+            controller.Controls.meter3.SetLabel("Running Current");
         }
+
+        controller.Controls.setting2.SetLabel(system.backupName);
 
         usermode = true;
     }
 
     void SetupSystems()
     {
-        int budget = 100;
+        int currentBudget = 100;
+        int powerBudget = 300;
 
         //running current cannot exceed 40% budget
         int level1running = UnityEngine.Random.Range(20, 41);
-        budget -= level1running;
+        currentBudget -= level1running;
         //surge cannot exceed 180% of running current
         int level1initial = UnityEngine.Random.Range(level1running, Convert.ToInt32(level1running * 1.8f) + 1);
-        int level1power = UnityEngine.Random.Range(80, 101);
+        int level1power = UnityEngine.Random.Range(80, 121);
+        powerBudget -= level1power;
 
         int level2running = UnityEngine.Random.Range(20, 41);
-        budget -= level2running;
+        currentBudget -= level2running;
         int level2initial = UnityEngine.Random.Range(level2running, Convert.ToInt32(level2running * 1.8f) + 1);
-        int level2power = UnityEngine.Random.Range(80, 101);
+        int level2power = UnityEngine.Random.Range(80, 121);
+        powerBudget -= level2power;
 
         //ensure the final system does not exceed budget
-        int level3running = UnityEngine.Random.Range(20, Convert.ToInt32(budget * 0.8f) + 1);
-        int level3initial = UnityEngine.Random.Range(level3running, budget + 1);
-        int level3power = UnityEngine.Random.Range(80, 101);
+        int level3running = UnityEngine.Random.Range(20, Convert.ToInt32(currentBudget * 0.8f) + 1);
+        int level3initial = UnityEngine.Random.Range(level3running, currentBudget + 1);
+        int level3power = UnityEngine.Random.Range(Convert.ToInt32(powerBudget * 0.8f) + 1, powerBudget + 1);
 
         List<int> places = new List<int> { 0, 1, 2 };
         int level1placement = places[UnityEngine.Random.Range(0, 3)];
@@ -520,14 +678,14 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         {
             if (ii == level1placement)
             {
-                level1systems.Add(new PowerSystem(level1initial, level1running, 5f, level1power));
+                level1systems.Add(new PowerSystem(level1initial, level1running, 5f, level1power, "Oxygen"));
             }
             else
             {
                 randomRunning = UnityEngine.Random.Range(20, 46);
                 randomInitial = UnityEngine.Random.Range(randomRunning, Convert.ToInt32(randomRunning * 1.8f));
-                randomPower = (randomRunning + UnityEngine.Random.Range(-5, 6)) * 4;
-                level1systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower));
+                randomPower = UnityEngine.Random.Range(90, 131);
+                level1systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower, "Oxygen"));
             }
         }
 
@@ -536,14 +694,14 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         {
             if (ii == level2placement)
             {
-                level2systems.Add(new PowerSystem(level2initial, level2running, 5f, level2power));
+                level2systems.Add(new PowerSystem(level2initial, level2running, 5f, level2power, "Food Synthesis"));
             }
             else
             {
                 randomRunning = UnityEngine.Random.Range(20, 46);
                 randomInitial = UnityEngine.Random.Range(randomRunning, Convert.ToInt32(randomRunning * 1.8f));
-                randomPower = (randomRunning + UnityEngine.Random.Range(-5, 6)) * 4;
-                level2systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower));
+                randomPower = UnityEngine.Random.Range(90, 131);
+                level2systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower, "Food Synthesis"));
             }
         }
 
@@ -552,14 +710,14 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         {
             if (ii == level3placement)
             {
-                level3systems.Add(new PowerSystem(level3initial, level3running, 5f, level2power));
+                level3systems.Add(new PowerSystem(level3initial, level3running, 5f, level3power, "Climate Control"));
             }
             else
             {
                 randomRunning = UnityEngine.Random.Range(20, 46);
                 randomInitial = UnityEngine.Random.Range(randomRunning, Convert.ToInt32(randomRunning * 1.8f));
-                randomPower = (randomRunning + UnityEngine.Random.Range(-5, 6)) * 4;
-                level3systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower));
+                randomPower = UnityEngine.Random.Range(90, 131);
+                level3systems.Add(new PowerSystem(randomInitial, randomRunning, 5f, randomPower, "Climate Control"));
             }
         }
     }
@@ -569,6 +727,7 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         public int initialCurrent;
         public int runningCurrent;
         public int power;
+        public string backupName;
 
         public int Current
         {
@@ -597,11 +756,12 @@ public class AdvancedProcedureTutorial2 : ProcedureBase
         public float warmUpTimer;
         public bool on;
 
-        public PowerSystem(int init, int running, float warmUp, int pow)
+        public PowerSystem(int init, int running, float warmUp, int pow, string name)
         {
             initialCurrent = init;
             runningCurrent = running;
             warmUpTimer = timeToWarmUp = warmUp;
+            backupName = name;
             power = pow;
             on = false;
         }

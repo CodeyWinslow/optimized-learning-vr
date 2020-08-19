@@ -15,6 +15,7 @@ public class SliderControl : BaseControl
         _controlType = BaseControlType.Slider;
         sliderComp = GetComponent<Slider>();
         sliderComp.onValueChanged.AddListener(OnValueChanged);
+        SetLabel();
     }
 
     public float Value

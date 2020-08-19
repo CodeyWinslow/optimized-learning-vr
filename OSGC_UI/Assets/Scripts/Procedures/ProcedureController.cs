@@ -139,8 +139,7 @@ public class ProcedureController : MonoBehaviour
         //only do special message if either the procedure was successful,
         //or if it was failed and restartOnFailure is not true
         if (procIndex == procedureCount
-            && (success ||
-                (!success && !restarting)))
+            && (success || (!restarting)))
         {
             string message = "";
 
