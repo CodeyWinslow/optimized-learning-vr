@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AdvancedProcedureTutorialHelper2 : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class AdvancedProcedureTutorialHelper2 : MonoBehaviour
     public GameObject Setting2Hint;
     public GameObject Toggle1Hintb;
     public GameObject ExplainEnding;
+    public GameObject ExplainEndingb;
 
     public void TurnAllOff()
     {
@@ -43,6 +45,7 @@ public class AdvancedProcedureTutorialHelper2 : MonoBehaviour
         ExplainSetting2a.SetActive(false);
         ExplainSetting2b.SetActive(false);
         ExplainSetting2c.SetActive(false);
+        ExplainSetting2c.GetComponentInChildren<Button>(true).gameObject.SetActive(false);
         Toggle2Hintb.SetActive(false);
         Toggle1Hinta.SetActive(false);
         RedLightHint.SetActive(false);
@@ -54,5 +57,6 @@ public class AdvancedProcedureTutorialHelper2 : MonoBehaviour
         Setting2Hint.SetActive(false);
         Toggle1Hintb.SetActive(false);
         ExplainEnding.SetActive(false);
+        ExplainEndingb.SetActive(false);
     }
 }

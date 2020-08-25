@@ -8,46 +8,41 @@ public class ProcedureController : MonoBehaviour
     UIControlCenter controls;
 
     ProcedureBase[] procedures;
-    const int procedureCount = 6;
+    const int procedureCount = 3;
 
     public List<MessageSequence> startSequences;
     public GameObject startScreen;
     public UIControlCenter Controls { get { return controls; } }
     
-    int procIndex = 0;
+    int procIndex = -1;
     ProcedureBase currentProc;
 
     public void LoadProcedure(int index)
     {
         if (index < 0 || index >= procedureCount) return;
 
-        if (currentProc != null)
+        //stop current or deal with start message
+        if (currentProc != null && currentProc.Running)
         {
+            //stop procedure
             currentProc.Stop();
-            if (procIndex - 1 < startSequences.Count && procIndex - 1 >= 0)
-                startSequences[procIndex - 1].Finish();
-        }
-        else if (procIndex < startSequences.Count)
-        {
-            startSequences[procIndex].Finish();
-        }
-
-        startScreen.SetActive(false);
-
-        procIndex = index;
-
-        currentProc = null;
-
-        if (startSequences.Count > procIndex
-                && startSequences[procIndex] != null)
-        {
-            startSequences[procIndex].OnceSequenceFinished += StartSequenceFinished;
-            startSequences[procIndex].Begin();
         }
         else
         {
-            startScreen.SetActive(true);
+            if (procIndex + 1 >= 0 && procIndex + 1 < startSequences.Count)
+            {
+                startSequences[procIndex + 1].Finish();
+            }
         }
+
+        //ensure we disable start screen
+        startScreen.SetActive(false);
+
+        //prepare vars for new proc
+        procIndex = index - 1;
+        currentProc = null;
+
+        ShowStartMessage();
     }
 
     void Awake()
@@ -60,36 +55,18 @@ public class ProcedureController : MonoBehaviour
         procedures = new ProcedureBase[procedureCount];
         ProcedureBase newProc;
 
-        newProc = new SimpleProcedureTutorial2();
+        newProc = new SimpleProcedure2();
         procedures[0] = (newProc);
 
-        newProc = new SimpleProcedure2();
-        newProc.RestartOnFailure = true;
+        newProc = new IntermediateProcedure2();
         procedures[1] = (newProc);
 
-        newProc = new IntermediateProcedureTutorial2();
-        procedures[2] = (newProc);
-
-        newProc = new IntermediateProcedure2();
-        newProc.RestartOnFailure = true;
-        procedures[3] = (newProc);
-
-        newProc = new AdvancedProcedureTutorial2();
-        newProc.RestartOnFailure = true;
-        procedures[4] = (newProc);
-
         newProc = new AdvancedProcedure2();
-        newProc.RestartOnFailure = true;
-        procedures[5] = (newProc);
+        procedures[2] = (newProc);
 
         //if (procedures != null && procedures.Count > 0)
         //    startScreen.SetActive(true);
-        if (startSequences.Count > 0 && startSequences[0] != null)
-        {
-            startSequences[0].OnceSequenceFinished += StartSequenceFinished;
-            startSequences[0].Begin();
-        }else if (procedures != null && procedureCount > 0)
-            startScreen.SetActive(true);
+        ShowStartMessage();
     }
 
     // Update is called once per frame
@@ -117,28 +94,36 @@ public class ProcedureController : MonoBehaviour
         }
     }
 
-    void StartNextProcedure()
+    void StartProcedure()
     {
-        if (procIndex < procedureCount)
+        if (procIndex >= 0 && procIndex < procedureCount)
         {
-            //advance to next only if beginning, successful, or ResartOnFailure is false
-            if (currentProc == null || currentProc.Success || !currentProc.RestartOnFailure)
-            {
-                currentProc = procedures[procIndex++];
-            }
-            currentProc.BeginProcedure(this);
-        }
-        else if (currentProc != null && currentProc.RestartOnFailure && !currentProc.Success)
-        {
+            currentProc = procedures[procIndex];
             currentProc.BeginProcedure(this);
         }
     }
 
+    void ShowStartMessage()
+    {
+        int index = procIndex + 1;
+
+        //show message if it exists, otherwise show start screen
+        if (startSequences.Count > index && startSequences[index] != null)
+        {
+            startSequences[index].OnceSequenceFinished += StartSequenceFinished;
+            startSequences[index].Begin();
+        }
+        else if (procedures != null && procedureCount > 0)
+            startScreen.SetActive(true);
+    }
+
     void FinishedProcedure(bool success, bool restarting)
     {
-        //only do special message if either the procedure was successful,
-        //or if it was failed and restartOnFailure is not true
-        if (procIndex == procedureCount
+        //only do special message if
+        //finishing last procedure and
+        //either the procedure was successful,
+        //or if restartOnFailure is not true
+        if (procIndex + 1 == procedureCount
             && (success || (!restarting)))
         {
             string message = "";
@@ -151,29 +136,14 @@ public class ProcedureController : MonoBehaviour
             message += "Finished all procedures.";
             controls.Notifications.ShowNotification(message);
         }
-        else if (!success && restarting)
-        {
-            if (procIndex - 1 >= 0 &&
-                startSequences.Count > procIndex - 1
-                && startSequences[procIndex - 1] != null)
-            {
-                //startSequences[procIndex-1].OnceSequenceFinished += StartSequenceFinished;
-                startSequences[procIndex - 1].Begin();
-            }
-            //startScreen.SetActive(true);
-        }
         else
         {
-            if (startSequences.Count > procIndex
-                && startSequences[procIndex] != null)
-            {
-                startSequences[procIndex].OnceSequenceFinished += StartSequenceFinished;
-                startSequences[procIndex].Begin();
-            }
-            else
-            {
-                startScreen.SetActive(true);
-            }
+            //revert to previous procIndex if restarting
+            if (!success && restarting)
+                --procIndex;
+
+            //show next message
+            ShowStartMessage();
         }
     }
 
@@ -188,6 +158,8 @@ public class ProcedureController : MonoBehaviour
         //if (startSequences.Count > procIndex && startSequences[procIndex] != null)
         //    startSequences[procIndex].Finish();
         controls.Notifications.DismissNotificationPressed();
-        StartNextProcedure();
+        //increment for starting next proc
+        ++procIndex;
+        StartProcedure();
     }
 }

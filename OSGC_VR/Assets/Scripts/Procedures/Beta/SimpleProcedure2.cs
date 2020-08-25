@@ -16,9 +16,6 @@ public class SimpleProcedure2 : ProcedureBase
     const float greenTime = 3f;
     float greenTimer;
 
-    int totalMoves;
-    int correctMoves;
-
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
@@ -27,8 +24,6 @@ public class SimpleProcedure2 : ProcedureBase
         wrongStep = false;
         greenTimerOn = false;
         greenTimer = greenTime;
-        totalMoves = 7;
-        correctMoves = 0;
 
         steps = new List<Step>();
         steps.Add(StepOne);
@@ -42,12 +37,6 @@ public class SimpleProcedure2 : ProcedureBase
         currentStep = steps.GetEnumerator();
         NextStep();
         controller.Controls.SubscribeToAllControls(UIHandler);
-    }
-    protected override void EndProcedure(bool wasSuccessful)
-    {
-        if (controller.reporter != null)
-            controller.reporter.Add(new ProcedureReport(ProcedureType.SimpleProcedure, totalMoves, correctMoves, wasSuccessful));
-        base.EndProcedure(wasSuccessful);
     }
 
     public override void Stop()
@@ -73,13 +62,10 @@ public class SimpleProcedure2 : ProcedureBase
             controller.Controls.UnsubscribeToAllControls(UIHandler);
             EndProcedure(false);
         }
-        else
+        else if (stepsFinished)
         {
-            if (stepsFinished)
-            {
-                controller.Controls.UnsubscribeToAllControls(UIHandler);
-                EndProcedure(true);
-            }
+            controller.Controls.UnsubscribeToAllControls(UIHandler);
+            EndProcedure(true);
         }
     }
 
@@ -168,7 +154,6 @@ public class SimpleProcedure2 : ProcedureBase
 
     void NextStep()
     {
-        ++correctMoves;
         if (!currentStep.MoveNext())
         {
             stepsFinished = true;
@@ -201,6 +186,17 @@ public class SimpleProcedure2 : ProcedureBase
         controller.Controls.slider1.Value = 0.5f;
         controller.Controls.slider2.Value = 0.5f;
         controller.Controls.slider3.Value = 0.5f;
+
+        //buttons
+        controller.Controls.button1.ToggleButton(false);
+        controller.Controls.button2.ToggleButton(false);
+        controller.Controls.button3.ToggleButton(false);
+        controller.Controls.button4.ToggleButton(false);
+        controller.Controls.button5.ToggleButton(false);
+        controller.Controls.button6.ToggleButton(false);
+        controller.Controls.button7.ToggleButton(false);
+        controller.Controls.button8.ToggleButton(false);
+        controller.Controls.button9.ToggleButton(false);
     }
 
     public void UIHandler(BaseControl c)

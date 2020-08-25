@@ -11,7 +11,7 @@ public class VRSlider : MonoBehaviour
     Slider sliderComp;
     LinearMapping mappingComp;
 
-    public float lastVal;
+    float lastVal;
 
     // Start is called before the first frame update
     void Awake()

@@ -29,6 +29,7 @@ public class LightControl : BaseControl
     {
         _controlType = BaseControlType.Light;
         imageBehaviour = GetComponent<Image>();
+        SetLabel();
     }
 
     // Start is called before the first frame update

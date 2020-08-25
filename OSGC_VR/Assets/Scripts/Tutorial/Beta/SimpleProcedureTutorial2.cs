@@ -199,6 +199,17 @@ public class SimpleProcedureTutorial2 : ProcedureBase
         controller.Controls.slider1.Value = 0.5f;
         controller.Controls.slider2.Value = 0.5f;
         controller.Controls.slider3.Value = 0.5f;
+
+        //buttons
+        controller.Controls.button1.ToggleButton(false);
+        controller.Controls.button2.ToggleButton(false);
+        controller.Controls.button3.ToggleButton(false);
+        controller.Controls.button4.ToggleButton(false);
+        controller.Controls.button5.ToggleButton(false);
+        controller.Controls.button6.ToggleButton(false);
+        controller.Controls.button7.ToggleButton(false);
+        controller.Controls.button8.ToggleButton(false);
+        controller.Controls.button9.ToggleButton(false);
     }
 
     public void UIHandler(BaseControl c)

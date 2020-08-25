@@ -11,26 +11,14 @@ public class IntermediateProcedure2 : ProcedureBase
 
     bool usermode = true;
 
-    int totalMoves = 0;
-    int correctMoves = 0;
-
     public override void BeginProcedure(ProcedureController cont)
     {
         base.BeginProcedure(cont);
         triggersToSucceed = baseTriggersToSucceed;
         usermode = true;
-        totalMoves = 5; //num of triggerResponses
-        correctMoves = 0;
         ResetUI();
         BeginTask();
         controller.Controls.SubscribeToAllControls(HandleInput);
-    }
-
-    protected override void EndProcedure(bool wasSuccessful)
-    {
-        if (controller.reporter != null)
-            controller.reporter.Add(new ProcedureReport(ProcedureType.IntermediateProcedure, totalMoves, correctMoves, wasSuccessful));
-        base.EndProcedure(wasSuccessful);
     }
 
     public override void Stop()
@@ -54,7 +42,6 @@ public class IntermediateProcedure2 : ProcedureBase
         {
             if (currentTask.successful)
             {
-                ++correctMoves;
                 if (--triggersToSucceed == 0)
                 {
                     controller.Controls.UnsubscribeToAllControls(HandleInput);
@@ -126,6 +113,17 @@ public class IntermediateProcedure2 : ProcedureBase
         controller.Controls.slider1.Value = 0.5f;
         controller.Controls.slider2.Value = 0.5f;
         controller.Controls.slider3.Value = 0.5f;
+
+        //buttons
+        controller.Controls.button1.ToggleButton(false);
+        controller.Controls.button2.ToggleButton(false);
+        controller.Controls.button3.ToggleButton(false);
+        controller.Controls.button4.ToggleButton(false);
+        controller.Controls.button5.ToggleButton(false);
+        controller.Controls.button6.ToggleButton(false);
+        controller.Controls.button7.ToggleButton(false);
+        controller.Controls.button8.ToggleButton(false);
+        controller.Controls.button9.ToggleButton(false);
 
         usermode = true;
     }
@@ -341,10 +339,20 @@ public class IntermediateProcedure2 : ProcedureBase
         int numTogglesOn(int togglegroup)
         {
             int numOn = 0;
-            if (controller.toggle1.isOn) ++numOn;
-            if (controller.toggle2.isOn) ++numOn;
-            if (controller.toggle3.isOn) ++numOn;
-            if (controller.toggle4.isOn) ++numOn;
+            bool[] toggles = null;
+
+            if (togglegroup == 0) toggles = option1toggles;
+            else if (togglegroup == 1) toggles = option2toggles;
+            else if (togglegroup == 2) toggles = option3toggles;
+
+            if (toggles != null)
+            {
+                if (toggles[0]) ++numOn;
+                if (toggles[1]) ++numOn;
+                if (toggles[2]) ++numOn;
+                if (toggles[3]) ++numOn;
+            }
+
             return numOn;
         }
 

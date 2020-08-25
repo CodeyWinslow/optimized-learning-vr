@@ -1,0 +1,43 @@
+TUTORIAL VIDEO SCRIPTS
+
+		Intro
+
+Hello! The following three videos will help you understand how to perform certain procedures using an application. Make sure to pay attention so you remember what to do when it's time to test you.
+
+First, I will introduce you to the interface so you understand what terminology will be used to refer to certain parts of the application.
+
+[Explain each control]
+
+
+		Simple
+
+The first procedure is called the simple procedure. It only requires a sequence of actions to complete the procedure. Carefully watch as I run through the procedure.
+
+[performs entire procedure]
+
+Alright now I will go through it in depth and explain what was done.
+
+[Explain step by step]
+
+		Intermediate
+
+The next procedure is called the intermediate procedure. This procedure requires you to perform a sequence of actions based on what light is shown. There are three lights: green, yellow, and red.
+
+[explain procedure for each light]
+
+
+		Advanced
+
+The final procedure is called the advanced procedure. This procedure is about solving a problem using the interface. You will notice that the titles of some controls have changed to help remember what they do.
+
+The idea for this procedure is that you are the captain of a spacecraft that has just been struck by a comet. This has caused 3 vital systems to go offline, triggering the backup power reserve to be used.
+
+Each vital system has 3 options for you turn on, each with different requirements. Each option has a Power requirement and a Current rating.
+
+The Current rating adds to your ship's total current rating, and you cannot go over 100 without causing an overload. If you overload, you will fail the procedure.
+
+A nuance of the Current rating is that there are two: initial current and running current. When a system's option is turned on, it will first use the initial current for 5 seconds. After 5 seconds, it will warm up and use the running current instead.
+
+The Power requirement is much simpler. Your ship only has 300 power to supply to the systems. When you turn a system's option on, its power requirement will be deducted from your total power. If you try to use more power than you have, you will fail the procedure.
+
+Alright, let's begin the procedure and see how to solve the problem.

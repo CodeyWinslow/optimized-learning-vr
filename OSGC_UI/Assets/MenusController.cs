@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,11 +16,11 @@ public class MenusController : MonoBehaviour
 
     //procedure select screen buttons
     public Button procedureBackButton;
-    public Button procedure1TutorialButton;
+    //public Button procedure1TutorialButton;
     public Button procedure1Button;
-    public Button procedure2TutorialButton;
+    //public Button procedure2TutorialButton;
     public Button procedure2Button;
-    public Button procedure3TutorialButton;
+    //public Button procedure3TutorialButton;
     public Button procedure3Button;
 
     //screens
@@ -29,6 +30,7 @@ public class MenusController : MonoBehaviour
     //settings
     public Toggle cursorVisibleToggle;
     bool showCursor = true;
+    bool paused = false;
 
     //proc controller
     ProcedureController procs;
@@ -45,11 +47,11 @@ public class MenusController : MonoBehaviour
         cursorVisibleToggle.onValueChanged.AddListener(OnShowCursorToggle);
 
         procedureBackButton.onClick.AddListener(OnProcBackButton);
-        procedure1TutorialButton.onClick.AddListener(OnProc1TutButton);
+        //procedure1TutorialButton.onClick.AddListener(OnProc1TutButton);
         procedure1Button.onClick.AddListener(OnProc1Button);
-        procedure2TutorialButton.onClick.AddListener(OnProc2TutButton);
+        //procedure2TutorialButton.onClick.AddListener(OnProc2TutButton);
         procedure2Button.onClick.AddListener(OnProc2Button);
-        procedure3TutorialButton.onClick.AddListener(OnProc3TutButton);
+        //procedure3TutorialButton.onClick.AddListener(OnProc3TutButton);
         procedure3Button.onClick.AddListener(OnProc3Button);
     }
 
@@ -94,16 +96,18 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(0);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnProc1Button()
     {
 
         if (procs != null)
-            procs.LoadProcedure(1);
+            procs.LoadProcedure(0);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnProc2TutButton()
@@ -112,15 +116,17 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(2);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnProc2Button()
     {
         if (procs != null)
-            procs.LoadProcedure(3);
+            procs.LoadProcedure(1);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnProc3TutButton()
@@ -128,15 +134,17 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(4);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnProc3Button()
     {
         if (procs != null)
-            procs.LoadProcedure(5);
+            procs.LoadProcedure(2);
 
-        proceduresScreen.SetActive(false);
+        paused = false;
+        CheckPaused();
     }
 
     void OnShowCursorToggle(bool show)
@@ -155,7 +163,24 @@ public class MenusController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseScreen.SetActive(true);
+            PauseButtonPressed();
         }
+    }
+
+    void CheckPaused()
+    {
+        if (paused) pauseScreen.SetActive(true);
+        else
+        {
+            pauseScreen.SetActive(false);
+            proceduresScreen.SetActive(false);
+        }
+    }
+
+    void PauseButtonPressed()
+    {
+        paused = !paused;
+
+        CheckPaused();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ProcedureController))]
+[RequireComponent(typeof(UIControlCenter))]
 public class MenusController : MonoBehaviour
 {
     //pause screen buttons
@@ -78,11 +79,13 @@ public class MenusController : MonoBehaviour
         if (paused)
         {
             pauseScreen.SetActive(true);
+            GetComponent<UIControlCenter>().DisableAllColliders();
         }
         else
         {
             pauseScreen.SetActive(false);
             proceduresScreen.SetActive(false);
+            GetComponent<UIControlCenter>().EnableAllColliders();
         }
     }
 
@@ -132,7 +135,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(1);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnProc2TutButton()
@@ -141,7 +144,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(2);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnProc2Button()
@@ -149,7 +152,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(3);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnProc3TutButton()
@@ -157,7 +160,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(4);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnProc3Button()
@@ -165,7 +168,7 @@ public class MenusController : MonoBehaviour
         if (procs != null)
             procs.LoadProcedure(5);
 
-        proceduresScreen.SetActive(false);
+        SetPaused(false);
     }
 
     void OnShowCursorToggle(bool show)

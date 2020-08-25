@@ -328,10 +328,19 @@ public class IntermediateProcedure2 : ProcedureBase
         int numTogglesOn(int togglegroup)
         {
             int numOn = 0;
-            if (controller.toggle1.isOn) ++numOn;
-            if (controller.toggle2.isOn) ++numOn;
-            if (controller.toggle3.isOn) ++numOn;
-            if (controller.toggle4.isOn) ++numOn;
+            bool[] group = null;
+
+            if (togglegroup == 0) group = option1toggles;
+            else if (togglegroup == 1) group = option2toggles;
+            else if (togglegroup == 2) group = option3toggles;
+
+            if (group != null)
+            {
+                if (group[0]) ++numOn;
+                if (group[1]) ++numOn;
+                if (group[2]) ++numOn;
+                if (group[3]) ++numOn;
+            }
             return numOn;
         }
 

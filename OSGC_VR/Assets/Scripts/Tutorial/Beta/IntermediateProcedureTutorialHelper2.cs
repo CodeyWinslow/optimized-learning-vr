@@ -32,20 +32,17 @@ public class IntermediateProcedureTutorialHelper2 : MonoBehaviour
     public void TurnAllOff()
     {
         WhenGreenHint.SetActive(false);
-        WhenGreenButton.SetActive(false);
         GreenHintOne.SetActive(false);
         GreenHintTwo.SetActive(false);
 
 
         WhenYellowHint.SetActive(false);
-        WhenYellowButton.SetActive(false);
         YellowHintOne.SetActive(false);
         YellowHintTwo.SetActive(false);
         YellowHintThree.SetActive(false);
 
 
         WhenRedHint.SetActive(false);
-        WhenRedButton.SetActive(false);
         RedHintOne.SetActive(false);
         RedHintTwo.SetActive(false);
         RedHintThree.SetActive(false);

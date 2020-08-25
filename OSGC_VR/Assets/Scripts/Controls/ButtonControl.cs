@@ -17,6 +17,7 @@ public class ButtonControl : BaseControl
     void Awake()
     {
         _controlType = BaseControlType.Button;
+        SetLabel();
     }
 
     void Start()

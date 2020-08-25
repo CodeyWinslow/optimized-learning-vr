@@ -85,8 +85,7 @@
     <Compile Include="Assets\Scripts\Procedures\Beta\IntermediateProcedure2.cs" />
     <Compile Include="Assets\Scripts\Procedures\Beta\SimpleProcedure2.cs" />
     <Compile Include="Assets\Scripts\Procedures\ProcedureBase.cs" />
-    <Compile Include="Assets\Scripts\Reporting\ProcedureReport.cs" />
-    <Compile Include="Assets\Scripts\Reporting\Reporter.cs" />
+    <Compile Include="Assets\Scripts\StartScreenScript.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\AdvancedProcedureTutorialHelper.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\IntermediateProcedureTutorial.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Alpha\IntermediateProcedureTutorialHelper.cs" />
