@@ -1,0 +1,26 @@
+Points to mention in report:
+
+Goal of the project
+evolution of hard requirements
+process of planning
+specifics of development
+What I did well and what I didn't
+Working with new technology
+working with familiar tool
+working alone
+valuability of deadlines
+pride of a finished product
+approval process a surprise
+motivation a challenge
+flexibility of project
+
+Parts of report:
+
+Technical
+	Introduction (briefly explains project and purpose)
+	Development
+	Outcome and expectations
+
+Context of project and development
+
+Lessons Learned
