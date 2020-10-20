@@ -1,0 +1,14 @@
+Topics				10 m
+
+Intro				10 s
+The goal			10 s
+The initial idea / final	40 s
+Creating UI/ Code arch		3 m
+VR in Unity			1 m
+Testing / adjustments		1 m
+Getting approval / didn't test	1 m
+My experience			1 m
+Where to go from here		1 m
+
+Q/A				2 m
+
