@@ -513,6 +513,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7607543054512107326, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607543054540537524, guid: 0daaf9fbc1f67054894de49382b69060,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -578,12 +583,32 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7607543054967370123, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607543055247565354, guid: 0daaf9fbc1f67054894de49382b69060,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607543055274981328, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607543055301483081, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607543055344508165, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607543055515413722, guid: 0daaf9fbc1f67054894de49382b69060,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -718,6 +743,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Perform the sequence you learned
       objectReference: {fileID: 0}
+    - target: {fileID: 7607543056291324206, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607543056438782075, guid: 0daaf9fbc1f67054894de49382b69060,
         type: 3}
       propertyPath: m_Text
@@ -727,6 +757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Perform the correct sequence based on what light is shown
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607543056523773119, guid: 0daaf9fbc1f67054894de49382b69060,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8228036127445416462, guid: 0daaf9fbc1f67054894de49382b69060,
         type: 3}
