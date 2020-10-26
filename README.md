@@ -44,12 +44,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
 
 The purpose of this project was the investigate the viability of VR technology as an educational device for industry skills. More specifically, to teach skills that require some kind of environmental interaction that would be expensive to mock. I would do this by setting up an experiment where subjects would learn using a VR application I develop.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Unity](https://unity.com/)
 
 
@@ -63,9 +62,10 @@ If you would like to see the work done for this project, follow the steps to ins
 
 You will need the following to fully realize the work done for this project:
 * [Unity Game Engine](https://unity.com/)
-* IDE, preferably Visual Studio 2019 or newer
+* IDE, preferably [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) or newer
 * SteamVR-compatible virtual reality headset and controller
 * [SteamVR](https://store.steampowered.com/app/250820/SteamVR/)
+* [Git](https://git-scm.com/downloads)
 
 ### Installation
 
